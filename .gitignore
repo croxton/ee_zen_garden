@@ -1,0 +1,66 @@
+# ExpressionEngine #
+####################
+/images
+/system
+/themes
+/admin.php
+/index.php
+
+# Compiled source
+#################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Globally ignored extensions #
+###############################
+*.bak
+*.diff
+*.err
+*.orig
+*.js.orig
+*.lock
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*.gem
+*.rbc
+*.scssc
+*.tmproj
+*.sass-cache
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon
+.cache
+error_log
+.ftpquota
+.hg
+.idea
+nbproject
+node_modules
+.project
+.rvmrc
+.sass-cache
+.settings
+[Tt]humbs.db
