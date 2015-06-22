@@ -59,8 +59,8 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 	* What, aside from content, will you make manageable by editors?
 	* Which third-party add-ons would you use, if any?
 	* Entry filtering.
-	* Long form content editing, where images, video, pullout quotes and other elements may be included within a blog post.
-	* One-off entries and global variables.	
+	* Long form content, where images, video, pullout quotes and other elements may be included within a single blog post.
+	* One-off entries.	
 	* SEO.
 	* Caching strategies.
 	
