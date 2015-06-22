@@ -88,7 +88,7 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 
 	* Click on `Pull Request` on the right near the top of the page.
 	* Choose `develop` as the base branch.	
-	* Write a descriptive comment briefly explaining what your solution.
+	* Write a descriptive comment briefly describing your solution.
 	* Click `Create pull request`.
 	
 4. I will review your solution for inclusion in the repo. If I ask you to make changes:
