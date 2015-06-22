@@ -6,7 +6,7 @@ This is a growing collection of template design patterns that explore different 
 
 ### The sample project
 
-You will be building a simple blog, adapted from the open-source 'Clean blog' bootstrap theme by [startbootstrap.com](startbootstrap.com).
+You task is to build the templates for a simple blog, adapted from the open-source 'Clean blog' bootstrap theme by [startbootstrap.com](startbootstrap.com).
 
 Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.github.io/ee_zen_garden)
 
@@ -23,10 +23,10 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 
 		git remote add upstream https://github.com/croxton/ee_zen_garden.git
 		
-4. Create and checkout a new branch in your clone, prefixed with your vendor name and a name for your solution, e.g. 'croxton-stash_template_partials', and create your branch from the `develop` branch of the upstream repo:
+4. Create and checkout a new branch in your clone, prefixed with your vendor name and a name for your solution (e.g. 'croxton-stash_template_partials'), and create your branch from the `develop` branch of the upstream repo:
 
 		git fetch upstream
-		git checkout -b croxton-stash_template_partials upstream/develop
+		git checkout -b vendor_name-solution_name upstream/develop
 
 5. Download and install a fresh copy of ExpressionEngine in the root directory of your local clone, following the [insallation instructions](https://ellislab.com/expressionengine/user-guide/installation/installation.html).
 		
@@ -53,9 +53,9 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 
 	Your task is to configure channels and custom fields, populate with sample data, and write the templates to generate the HTML markup and interaction states represented in the html files above. These are some points to consider:
 	
-	* Field & variable naming schemes (nonemaclature).
+	* Field & variable naming schemes (nomenclature).
 	* URL design & routing.	
-	* Template organisation, code re-use, global variables.
+	* Template organisation, code re-use and global variables.
 	* What, aside from content, will you make manageable by editors?
 	* Which third-party add-ons would you use, if any?
 	* Entry filtering.
@@ -78,11 +78,11 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 1. Push your local commits to your GitHub fork. You might want to rebase first:
 
 		git fetch upstream
-		git rebase upstream/develop pattern-your_pattern_name
-		git push --set-upstream origin pattern-your_pattern_name
+		git rebase upstream/develop vendor_name-solution_name
+		git push --set-upstream origin vendor_name-solution_name
 		
 2. Find the branch on your GitHub ee_zen_garden fork. E.g.
-	[https://github.com/my-account/ee_zen_garden/branches/pattern-your_pattern_name](https://github.com/your-account/ee_zen_garden/branches/vendor-your_solution_name)
+	[https://github.com/my-account/ee_zen_garden/branches/vendor_name-solution_name](https://github.com/your-account/ee_zen_garden/branches/vendor_name-solution_name)
 	
 3. Open a new pull request:
 
@@ -91,7 +91,7 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 	* Write a descriptive comment briefly describing your solution.
 	* Click `Create pull request`.
 	
-4. I will review your solution for inclusion in the repo. If I ask you to make changes:
+4. We will review your solution for inclusion in the repo. If we ask you to make changes:
 
 	* Make the new changes in your local clone on the same local branch.
 	* Push the branch to GitHub again using the same commands as before.
