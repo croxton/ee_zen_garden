@@ -2,8 +2,13 @@
 
 ExpressionEngine is famously flexible. This can be both a blessing and a curse; sometimes it’s hard to know where to start and we are left guessing at what might be the most optimal approach. Embeds or layouts? Categories or relationships? Long-form or discrete custom fields? Should we rely on third-party addons? What about caching?
 
-This project is a collection of template design patterns that explore different approaches to the same problem, with the aim of allowing fair comparisons to be made. I am hopeful that a common set of principles - 'best practice' - might emerge, but at the least it will allow us to share our favoured solutions to some typical problems faced by ExpressionEngine developers.
+This is a growing collection of template design patterns that explore different approaches to the same problem, with the aim of allowing fair comparisons to be made. I am hopeful that a common set of principles - 'best practice' - might emerge, but at the least it will allow us to share our favoured solutions to some typical problems faced by ExpressionEngine developers.
 
+### The sample project
+
+You will be building a simple blog, adapted from the open-source 'Clean blog' bootstrap theme by [startbootstrap.com](startbootstrap.com).
+
+Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.github.io/ee_zen_garden)
 
 ### Getting started
 
@@ -32,7 +37,6 @@ This project is a collection of template design patterns that explore different 
 		   └─ your_solution_name
 			  └─ README.md
 			  └─ templates
-			     └─ default_site	
 7. 	Edit `/system/expressionengine/config/config.php` and add the full path to the templates directory of your solution:
 
 		$conf['save_tmpl_files'] = "y";
