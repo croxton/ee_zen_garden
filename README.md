@@ -4,9 +4,9 @@ ExpressionEngine is famously flexible. This can be both a blessing and a curse; 
 
 This is a growing collection of template design patterns that explore different approaches to the same problem, with the aim of allowing fair comparisons to be made. I am hopeful that a common set of principles - 'best practice' - might emerge, but at the least it will allow us to share our favoured solutions to some typical problems faced by ExpressionEngine developers.
 
-### The sample project
+### The challenge
 
-You task is to build the templates for a simple blog, adapted from the open-source 'Clean blog' bootstrap theme by [startbootstrap.com](startbootstrap.com).
+Our task is to build the templates for a simple blog, adapted from the open-source 'Clean blog' bootstrap theme by [startbootstrap.com](startbootstrap.com). Your challenge is to find a solution that is as efficient, maintainable and scaleable as possible, while allowing editors to edit content in a logical fashion.
 
 Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.github.io/ee_zen_garden)
 
@@ -51,18 +51,23 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 	* `about.html` - a one-off "static" page
 	* `contact.html` - a contact form
 
-	Your task is to configure channels and custom fields, populate with sample data, and write the templates to generate the HTML markup and interaction states represented in the html files above. These are some points to consider:
+	Your task is to configure channels and custom fields, populate with sample data, and write the templates to generate the HTML markup and interaction states represented in the html files above. These are some points you might want to consider, although please don't feel obliged to cover everything:
 	
-	* Field & variable naming schemes (nomenclature).
-	* URL design & routing.	
-	* Template organisation, code re-use and global variables.
-	* What, aside from content, will you make manageable by editors?
-	* Which third-party add-ons would you use, if any?
-	* Entry filtering.
-	* Long form content, where images, video, pullout quotes and other elements may be included within a single blog post.
-	* One-off entries.	
-	* SEO.
-	* Caching strategies.
+	* Field & variable naming schemes (nomenclature)
+	* URL design & routing
+	* Template organisation, code re-use and global variables
+	* What, aside from content, would you make manageable by editors?
+	* Third-party add-ons - which would you use, if any, and why?
+	* Filtering / sorting / paginating lists of entries
+	* Managing relationships between content
+	* Long form content, where images, video, pullout quotes and other elements may be included within a single blog post
+	* Managing one-off entries/content
+	* Entry / draft previews
+	* Static file and image management, image transforms and CDNs
+	* Caching strategies and surviving high traffic
+	* How would your solution scale, if new content types are required later?
+	* Security
+	* SEO
 	
 	Make a note of the steps you take to complete your solution in the `README.md` file, list any third-party dependencies you choose to install and anthing else you think might be relevant to your solution.
 	
