@@ -40,7 +40,7 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 7. 	Edit `/system/expressionengine/config/config.php` and add the full path to the templates directory of your solution:
 
 		$conf['save_tmpl_files'] = "y";
-		$conf['tmpl_file_basepath'] = "/path/to/ee_zen_garden/vendors/your_vendor_name/your_solution_name/templates";	
+		$conf['tmpl_file_basepath'] = $_SERVER['DOCUMENT_ROOT'] . "/vendors/your_vendor_name/your_solution_name/templates";	
 		
 8. Now it's time to create your solution: in the `assets` directory you will find the project that you are going to build: a simple blog adapted from the open-source ['Cool Blog' bootstrap theme](http://startbootstrap.com/template-overviews/clean-blog) by [startbootstrap.com](http://startbootstrap.com/). 
 
