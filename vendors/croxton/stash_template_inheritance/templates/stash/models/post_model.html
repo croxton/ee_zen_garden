@@ -1,0 +1,31 @@
+{!-- ============================================================================= 
+     Post model
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Captures data for a single entry using the Posts fieldgroup (blog|pages)
+     ============================================================================= --}
+{exp:channel:entries
+	channel="blog|pages"
+	entry_id="{route_1_entry_id}"
+	disable="member_data"
+	limit="1"
+	require_entry="yes"
+	dynamic="no"
+}
+	{exp:stash:set type="snippet"}
+		{stash:pg_title}{title}{/stash:pg_title}
+		{stash:pg_subtitle}{post_subtitle}{/stash:pg_subtitle}
+		{stash:pg_date}{entry_date format="%F %d, %Y"}{/stash:pg_date}
+		{stash:pg_author}{author}{/stash:pg_author}
+		{stash:pg_body}{post_body}{/stash:pg_body}
+		{stash:pg_img}{post_img}{/stash:pg_img}
+	{/exp:stash:set}
+
+	{!-- capture assigned categories --}
+	{exp:stash:set_list name="categories" context="{route_1_entry_id}"}
+	{categories show_group="1"}
+		{stash:title}{category_name}{/stash:title}
+		{stash:url}/blog/category/{category_url_title}{/stash:url}
+	{/categories}
+	{/exp:stash:set_list}
+
+{/exp:channel:entries}

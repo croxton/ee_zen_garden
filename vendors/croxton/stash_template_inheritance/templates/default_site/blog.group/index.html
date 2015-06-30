@@ -1,0 +1,32 @@
+{!-- ============================================================================= 
+     Blog homepage
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Displays a paginated list of the blog posts
+     - Display a list of categories
+     - Static cache first page of results
+     ============================================================================= --}
+
+{!-- include the base layout --}
+{stash:embed:layouts:base}
+
+{!-- block:header - flag that we want a fullscreen image --}
+{exp:stash:set type="snippet"}
+	{stash:pg_fullscreen}y{/stash:pg_fullscreen}
+{/exp:stash:set}
+
+{!-- capture entry data --}
+{stash:embed:models:post_model process="start" parse="no"}
+
+{!-- capture categories --}
+{exp:stash:set_list name="categories" parse_tags="yes" parse_depth="2"}
+	{exp:channel:categories style="linear"}
+		{stash:title}{category_name}{/stash:title}
+		{stash:url}/blog/category/{category_url_title}{/stash:url}
+	{/exp:channel:categories}
+{/exp:stash:set_list}
+
+{!-- block:content --}
+{exp:stash:extend name="block:content" with="partials:post_list"}
+
+{!-- static caching for page 1 of results only. Refresh hourly. --}
+{if !segment_1}{exp:stash:static logged_out_only="yes" refresh="60" compress="yes" context="home"}{/if}
