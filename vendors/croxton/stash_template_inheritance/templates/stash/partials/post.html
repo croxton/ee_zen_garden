@@ -2,10 +2,10 @@
 {pg_body}
 
 {!-- related categories --}
-{if {exp:stash:list_count name="categories"}}
+{if {exp:stash:list_count name="categories" context="{route_1_entry_id}"}}
 	<h3>Categories</h3>
 	<ul class="tags">
-	{exp:stash:get_list name="categories"}
+	{exp:stash:get_list name="categories" context="{route_1_entry_id}"}
 	    <li>
 	        <a href="{url}">{title}</a>
 	    </li>

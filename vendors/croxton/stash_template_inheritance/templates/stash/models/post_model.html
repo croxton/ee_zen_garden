@@ -21,7 +21,7 @@
 	{/exp:stash:set}
 
 	{!-- capture assigned categories --}
-	{exp:stash:set_list name="categories"}
+	{exp:stash:set_list name="categories" context="{route_1_entry_id}"}
 	{categories show_group="1"}
 		{stash:title}{category_name}{/stash:title}
 		{stash:url}/blog/category/{category_url_title}{/stash:url}

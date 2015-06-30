@@ -1,8 +1,8 @@
 <?php
 
 /* Debug */
-#$config['template_debugging'] = 'y';
-#$config['show_profiler'] = 'y';
+$config['template_debugging'] = 'y';
+$config['show_profiler'] = 'y';
 
 /* Templates */
 $config['save_tmpl_files'] = 'y';

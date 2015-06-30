@@ -138,6 +138,8 @@ Publish a few random entries - anything you like - and assign to one or more cat
 
 ### Category groups
 
+Create categories as follows, adding a description and assigning an image to each:
+
 ##### Blog
 * Beards
 * Beer

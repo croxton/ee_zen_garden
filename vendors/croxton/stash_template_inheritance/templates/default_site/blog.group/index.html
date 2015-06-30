@@ -17,9 +17,6 @@
 {!-- capture entry data --}
 {stash:embed:models:post_model process="start" parse="no"}
 
-{!-- block:content --}
-{exp:stash:extend name="block:content" with="partials:post_list"}
-
 {!-- capture categories --}
 {exp:stash:set_list name="categories" parse_tags="yes" parse_depth="2"}
 	{exp:channel:categories style="linear"}
@@ -27,6 +24,9 @@
 		{stash:url}/blog/category/{category_url_title}{/stash:url}
 	{/exp:channel:categories}
 {/exp:stash:set_list}
+
+{!-- block:content --}
+{exp:stash:extend name="block:content" with="partials:post_list"}
 
 {!-- static caching for page 1 of results only. Refresh hourly. --}
 {if !segment_1}{exp:stash:static logged_out_only="yes" refresh="60" compress="yes" context="home"}{/if}
