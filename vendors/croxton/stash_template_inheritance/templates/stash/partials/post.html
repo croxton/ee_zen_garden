@@ -1,0 +1,17 @@
+{!-- main body copy --}
+{pg_body}
+
+{!-- related categories --}
+{if {exp:stash:list_count name="categories"}}
+	<h3>Categories</h3>
+	<ul class="tags">
+	{exp:stash:get_list name="categories"}
+	    <li>
+	        <a href="{url}">{title}</a>
+	    </li>
+	{/exp:stash:get_list}
+	</ul>
+{/if}
+
+{!-- related entries --}
+<div id="js-related"></div>
