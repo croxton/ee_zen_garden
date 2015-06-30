@@ -1,0 +1,14 @@
+{!-- ============================================================================= 
+     Contact
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Displays a contact form
+     ============================================================================= --}
+
+{!-- include the base layout --}
+{stash:embed:layouts:base}
+
+{!-- block:content --}
+{exp:stash:extend name="block:content" with="partials:contact_form"}
+
+{!-- capture entry data --}
+{stash:embed:models:post_model process="start" parse="no"}

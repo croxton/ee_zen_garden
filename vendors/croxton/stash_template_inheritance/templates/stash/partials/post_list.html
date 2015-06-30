@@ -1,0 +1,55 @@
+{!-- List of posts --}
+{exp:channel:entries
+	channel="blog"
+	disable="categories|member_data"
+	limit="1"
+	paginate="bottom"
+	dynamic="no"
+	{if route_1_cat_id}category="{route_1_cat_id}"{/if}
+}
+<div class="post-preview">
+    <a href="/blog/{url_title}">
+        <h2 class="post-title">{title}</h2>
+        <h3 class="post-subtitle">{post_subtitle}</h3>
+    </a>
+    <p class="post-meta">
+        Posted by <a href="#">{author}</a> on {entry_date format="%F %d, %Y"}
+    </p>
+</div>
+<hr>
+
+{paginate}
+    {pagination_links}
+    	<ul class="pager">
+    		{previous_page}
+    		<li class="prev">
+                <a href="{pagination_url}">&larr; Newer Posts</a>
+            </li>
+            {/previous_page}
+
+            {next_page}
+            <li class="next">
+                <a href="{pagination_url}">Older Posts &rarr;</a>
+            </li>
+            {/next_page}
+        </ul>
+    {/pagination_links}
+{/paginate}
+{/exp:channel:entries}
+
+{!-- Categories --}
+{if {exp:stash:list_count name="categories"}}
+<div class="box">
+
+	<h3>Categories</h3>
+   	
+	<ul class="tags">
+	{exp:stash:get_list name="categories"}
+	    <li>
+	        <a href="{url}">{title}</a>
+	    </li>
+	{/exp:stash:get_list}
+	</ul>
+	
+</div>
+{/if}
