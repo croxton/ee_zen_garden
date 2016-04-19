@@ -63,11 +63,16 @@ hr.small {
   font-weight: 800;
   letter-spacing: 1px;
 }
+
 @media only screen and (min-width: 768px) {
   .navbar-custom {
     background: transparent;
     border-bottom: 1px solid transparent;
+
   }
+    .navbar-custom--header {
+      background: #333;
+    }
   .navbar-custom .navbar-brand {
     color: white;
     padding: 20px;
@@ -228,7 +233,7 @@ hr.small {
   margin-top: 30px;
   margin-bottom: 10px;
 }
-.post-preview > a > .post-subtitle {
+.post-subtitle {
   margin: 0;
   font-weight: 300;
   margin-bottom: 10px;
@@ -268,6 +273,40 @@ hr.small {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+.post-kicker {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin:0 0 1em 0;
+  font-size: .75em;
+  color: #0085A1;
+}
+.post-img {
+  width: 100%;
+  display: block;
+  margin-top: .5em;
+}
+
+.post-headline {
+  margin-top: 1em;
+}
+
+.post-feature {
+    position: relative;
+    display: block;
+    background-size: cover;
+    width: 100%;
+    padding-bottom: 100%;
+    color: #FFF;
+}
+
+.post-feature-content {
+    position: absolute;
+    bottom:0;
+    padding: 1em;
+}
+
 footer {
   padding: 50px 0 65px;
 }
@@ -441,5 +480,28 @@ ul.tags li a:focus, ul.tags li a:hover {
   .tags li a {
     font-size: 16px;
     border-radius: 16px;
+  }
+}
+
+/* headlines */
+
+.navbar-custom + .lead {
+  margin-top: 61px;
+}
+
+.lead img {
+  display: block;
+  width: 100%;
+}
+.lead {
+  background: #eee;
+  padding-bottom: 2em;
+}
+@media only screen and (min-width: 768px) {
+  .lead {
+    padding-top: 2em;
+  }
+  .lead .post-preview > a > .post-title {
+    margin-top:0;
   }
 }
