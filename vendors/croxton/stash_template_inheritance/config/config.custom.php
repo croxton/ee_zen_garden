@@ -15,8 +15,13 @@ $config['stash_file_sync'] = FALSE; // set to FALSE for production
 $config['stash_static_basepath'] = $_SERVER['DOCUMENT_ROOT'] . '/vendors/croxton/stash_template_inheritance/static_cache/';
 $config['stash_static_url'] = '/vendors/croxton/stash_template_inheritance/static_cache/'; // should be a relative url
 $config['stash_static_cache_enabled'] = TRUE; // set to TRUE to enable static caching
+$config['stash_static_cache_index'] = TRUE; // set to TRUE to use Stash as an index only when static caching (variable value not saved)
+$config['stash_query_strings'] = FALSE; // set to TRUE to cache query strings when referencing the current uri with @URI
 $config['stash_prune_enabled'] = FALSE; // using CRON
 $config['stash_cookie_enabled'] = FALSE; // not using USER scope, so we don't need it
+$config['stash_default_scope'] = 'local'; // default variable scope if not specified
+$config['stash_default_refresh'] = 0; // default cache refresh period in minutes
+
 
 /**
  * Routes
@@ -55,11 +60,6 @@ $config['resource_router'] = array(
 				// any other single entry page
 				default :
 					$router->setTemplate('site/_page');
-			}
-
-			// contact form
-			if ($wildcard->value === 'contact') {
-				$router->setTemplate('contact');
 			}
 		}
 	},

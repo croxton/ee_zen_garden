@@ -28,7 +28,7 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 		git fetch upstream
 		git checkout -b vendor_name-solution_name upstream/develop
 
-5. Download and install a fresh copy of ExpressionEngine in the root directory of your local clone, following the [insallation instructions](https://ellislab.com/expressionengine/user-guide/installation/installation.html).
+5. Download and install a fresh copy of ExpressionEngine 3 in the root directory of your local clone, following the [insallation instructions](https://ellislab.com/expressionengine/user-guide/installation/installation.html).
 		
 6. Create the following files/directories inside the `vendors` directory of your local clone:
 
@@ -36,13 +36,24 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 		└─ your_vendor_name
 		   └─ your_solution_name
 			  └─ README.md
+			  └─ config
 			  └─ templates
-7. 	Edit `/system/expressionengine/config/config.php` and add the full path to the templates directory of your solution:
+
+
+7. 	Edit `/system/user/config/config.php` and add this rule:
 
 		$conf['save_tmpl_files'] = "y";
-		$conf['tmpl_file_basepath'] = $_SERVER['DOCUMENT_ROOT'] . "/vendors/your_vendor_name/your_solution_name/templates";	
+
+8: Optional: create a symlink to the templates folder in your vendor directory from EE's default template location, e.g:
+	
+	ln -s ~/Sites/ee_zen_garden/vendors/[your vendor name]/[your solution name]/templates ~/Sites/ee_zen_garden/system/user/templates
+
+	If you need to change the symlink:
+	ln -nfs ~/path/to/the/new/location ~/Sites/ee_zen_garden/system/user/templates
+
+If you don't want to do this, you'll need to put your templates directly in the `/system/user/templates` folder and copy them to your vendor template folder when you make changes.
 		
-8. Now it's time to create your solution: in the `assets` directory you will find the project that you are going to build: a simple blog adapted from the open-source ['Cool Blog' bootstrap theme](http://startbootstrap.com/template-overviews/clean-blog) by [startbootstrap.com](http://startbootstrap.com/). 
+9. Now it's time to create your solution: in the `assets` directory you will find the project that you are going to build: a simple blog adapted from the open-source ['Cool Blog' bootstrap theme](http://startbootstrap.com/template-overviews/clean-blog) by [startbootstrap.com](http://startbootstrap.com/). 
 
 	The HTML files can be found in the `assets/html` directory:
 	* `index.html` - blog post listing
@@ -50,6 +61,9 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 	* `category.html` - blog listing filtered by category/tag 
 	* `about.html` - a one-off "static" page
 	* `contact.html` - a contact form
+	* `headlines.html` - an alternative newspaper-style homepage
+	* `profile.html` - an author profile
+	* `category_archive.html` - a list of entries organised by category
 
 	Your task is to configure channels and custom fields, populate with sample data, and write the templates to generate the HTML markup and interaction states represented in the html files above. These are some points you might want to consider, although please don't feel obliged to cover everything:
 	
@@ -71,7 +85,7 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 	
 	Make a note of the steps you take to complete your solution in the `README.md` file, list any third-party dependencies you choose to install and anthing else you think might be relevant to your solution.
 	
-9. Edit and commit changes to your branch.
+10. Edit and commit changes to your branch.
 	
 		git add .
 		git commit -m 'What you did'
@@ -117,6 +131,11 @@ Post: [Beth Scupham](https://www.flickr.com/photos/bethscupham) [https://flic.kr
 Post content image: [NASA on The Commons](https://www.flickr.com/photos/nasacommons/)
 
 Contact Me: [Heather Buckley](https://www.flickr.com/photos/heatherbuckley/), [https://flic.kr/p/d9pxBm](https://flic.kr/p/d9pxBm)
+
+
+---
+
+Goat cannon: The US Army (https://www.flickr.com/photos/soldiersmediacenter/)
 
 
 
