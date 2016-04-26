@@ -109,7 +109,7 @@ hr.small {
   }
   .navbar-custom .nav li a {
     color: white;
-    padding: 20px;
+    padding: 20px 15px;
   }
   .navbar-custom .nav li a:hover,
   .navbar-custom .nav li a:focus {

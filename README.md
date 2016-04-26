@@ -63,7 +63,7 @@ If you don't want to do this, you'll need to put your templates directly in the 
 	* `contact.html` - a contact form
 	* `headlines.html` - an alternative newspaper-style homepage
 	* `profile.html` - an author profile
-	* `category_archive.html` - a list of entries organised by category
+	* `archive.html` - a list of entries organised by category
 
 	Your task is to configure channels and custom fields, populate with sample data, and write the templates to generate the HTML markup and interaction states represented in the html files above. These are some points you might want to consider, although please don't feel obliged to cover everything:
 	
@@ -120,22 +120,36 @@ If you don't want to do this, you'll need to put your templates directly in the 
 
 #### Image credits
 
-Homepage: [Barney Moss](https://www.flickr.com/photos/barneymoss/), [https://flic.kr/p/tRMwyF](https://flic.kr/p/tRMwyF)
+**Page headers:**
 
-About Me: [Bob Mical](https://www.flickr.com/photos/small_realm/), [https://flic.kr/p/rWd5gJ](https://flic.kr/p/rWd5gJ)
-
-Category: [Andrea](https://www.flickr.com/photos/sheepies/), [https://flic.kr/p/atwTbf](https://flic.kr/p/atwTbf)
-
-Post: [Beth Scupham](https://www.flickr.com/photos/bethscupham) [https://flic.kr/p/cFb9Am](https://flic.kr/p/cFb9Am)
-
-Post content image: [NASA on The Commons](https://www.flickr.com/photos/nasacommons/)
-
-Contact Me: [Heather Buckley](https://www.flickr.com/photos/heatherbuckley/), [https://flic.kr/p/d9pxBm](https://flic.kr/p/d9pxBm)
+* Homepage: [Barney Moss](https://www.flickr.com/photos/barneymoss/), [https://flic.kr/p/tRMwyF](https://flic.kr/p/tRMwyF)
+* About Me: [Bob Mical](https://www.flickr.com/photos/small_realm/), [https://flic.kr/p/rWd5gJ](https://flic.kr/p/rWd5gJ)
+* Category: [Andrea](https://www.flickr.com/photos/sheepies/), [https://flic.kr/p/atwTbf](https://flic.kr/p/atwTbf)
+* Post: [Beth Scupham](https://www.flickr.com/photos/bethscupham), [https://flic.kr/p/cFb9Am](https://flic.kr/p/cFb9Am)
+* Contact: [Heather Buckley](https://www.flickr.com/photos/heatherbuckley/), [https://flic.kr/p/d9pxBm](https://flic.kr/p/d9pxBm)
+* Archive: [Cat Burton](https://www.flickr.com/photos/catburton/), [https://flic.kr/p/8EtSuw](https://flic.kr/p/8EtSuw)
 
 
----
+**Headlines:**
 
-Goat cannon: The US Army (https://www.flickr.com/photos/soldiersmediacenter/)
+* Mustache: [Aaron Morton](https://www.flickr.com/photos/amorton/), [https://flic.kr/p/35Vzgy](https://flic.kr/p/35Vzgy)
+* Seagull: [Maxime Raphael](https://www.flickr.com/photos/maximeraphael/), [https://flic.kr/p/e3pHxa](https://flic.kr/p/e3pHxa)
+* Kitten: [brownpau](https://www.flickr.com/photos/brownpau/), [https://flic.kr/p/dZ5e6o](https://flic.kr/p/dZ5e6o)
+* Turkey: [Kurman Communications, Inc.](https://www.flickr.com/photos/kurmanphotos/), [https://flic.kr/p/pFpXBK](https://flic.kr/p/pFpXBK)
+* Death: [Jack Lu](https://www.flickr.com/photos/leo19981/), [https://flic.kr/p/4B8KJf](https://flic.kr/p/4B8KJf)
+* Richard Dawkins and Jesus: [Surian Soosay](https://www.flickr.com/photos/ssoosay/), [https://flic.kr/p/8ReJb2](https://flic.kr/p/8ReJb2)
+* Brighton Pride: [heather buckley](https://www.flickr.com/photos/heatherbuckley/), [https://flic.kr/p/acYyEG](https://flic.kr/p/acYyEG)
+* Chipmunk:[Karim Rezk](https://www.flickr.com/photos/krezk/), [https://flic.kr/p/4A5Zsz](https://flic.kr/p/4A5Zsz)
+* Mating toads: [philip hay](https://www.flickr.com/photos/minipixel/), [https://flic.kr/p/KwqJN](https://flic.kr/p/KwqJN)
+* Statue of Liberty: [Celso FLORES](https://www.flickr.com/photos/celso/), [https://flic.kr/p/7cqfD3](https://flic.kr/p/7cqfD3)
+* Middle-aged footballer [Ken K](https://www.flickr.com/photos/kenkuchih/), [https://flic.kr/p/bCqzhP](https://flic.kr/p/bCqzhP)
+* Lego builder: [clement127](https://www.flickr.com/photos/clement127/), [https://flic.kr/p/qJvJ6u](https://flic.kr/p/qJvJ6u)
+* Artillery: [The US Army](https://www.flickr.com/photos/soldiersmediacenter/), [https://flic.kr/p/5tWobB](https://flic.kr/p/5tWobB)
+
+**Post content images:**
+
+* Astronaut: [NASA on The Commons](https://www.flickr.com/photos/nasacommons/)
+
 
 
 
