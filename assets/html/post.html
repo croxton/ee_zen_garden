@@ -15,7 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="https://rawgit.com/croxton/ee_zen_garden/master/assets/css/ee-zen.css" rel="stylesheet" type="text/css">
+    <link href="../css/ee-zen.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,10 +33,11 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <!-- Header -->
+    <header role="banner" class="navbar navbar-default navbar-fixed-top navbar-custom navbar-custom--img">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <!-- Brand and toggle -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -44,51 +45,44 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">EE Zen Garden</a>
+                <h1 class="navbar-brand"><a href="index.html">EE Zen Garden</a></h1>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Navigation -->
+            <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="post.html">Post</a>
-                    </li>
-                    <li>
-                        <a href="category.html">Category</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="post.html">Post</a></li>
+                    <li><a href="category.html">Category</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+            </nav>
+            <!-- /Navigation -->
+            
         </div>
-        <!-- /.container -->
-    </nav>
+        <!-- /.container-fluid -->
+    </header>
 
-    <!-- Page Header -->
-    <header class="intro-header" style="background-image: url('https://rawgit.com/croxton/ee_zen_garden/master/assets/img/post.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <h1>Man must explore, and this is exploration at its greatest</h1>
-                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by <a href="#">EE Zen Garden</a> on August 24, 2015</span>
+    <!-- Main content -->
+    <main role="main">
+
+        <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('https://rawgit.com/croxton/ee_zen_garden/master/assets/img/post.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>Man must explore, and this is exploration at its greatest</h1>
+                            <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                            <span class="meta">Posted by <a href="#">EE Zen Garden</a> on August 24, 2015</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Post Content -->
-    <article>
+        <!-- Content body -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -148,12 +142,14 @@
                 </div>
             </div>
         </div>
-    </article>
+        <!-- /Content body -->
+
+    </main>
 
     <hr>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -167,7 +163,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; EE Zen Garden 2015</p>
+                    <p class="copyright text-muted">Copyright &copy; EE Zen Garden 2016</p>
                 </div>
             </div>
         </div>
@@ -180,7 +176,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="https://rawgit.com/croxton/ee_zen_garden/master/assets/js/ee-zen.js"></script>
+    <script src="../js/ee-zen.js"></script>
 
 </body>
 

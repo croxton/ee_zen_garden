@@ -15,7 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="https://rawgit.com/croxton/ee_zen_garden/master/assets/css/ee-zen.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/ee-zen.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,11 +33,11 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <!-- Header -->
+    <header role="banner" class="navbar navbar-default navbar-fixed-top navbar-custom{if pg_img} navbar-custom--img{/if}">
         <div class="container-fluid">
 
-            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Brand and toggle -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -45,58 +45,60 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">{site_name}</a>
+                <h1 class="navbar-brand"><a href="/">EE Zen Garden</a></h1>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Navigation -->
+            <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/about">About</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+            </nav>
+            <!-- /Navigation -->
+            
         </div>
-        <!-- /.container -->
-    </nav>
+        <!-- /.container-fluid -->
+    </header>
 
-    <!-- Intro header -->
-    <header class="intro-header{if pg_fullscreen} intro-header--fullscreen{/if}"{if pg_img} style="background-image: url('{pg_img}')"{/if}>
+    <!-- Main content -->
+    <main role="main">
+    {exp:stash:block:main}
+
+        <!-- Intro header -->
+        <header class="intro-header{if pg_fullscreen} intro-header--fullscreen{/if}"{if pg_img} style="background-image: url('{pg_img}')"{/if}>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        {exp:stash:block:header}
+                        <div class="page-heading">
+                            <h1>{pg_title}</h1>
+                            {if pg_subtitle}
+                            <hr class="small">
+                            <span class="subheading">{pg_subtitle}</span>
+                            {/if}
+                        </div>
+                        {/exp:stash:block:header}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content body -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    {exp:stash:block:header}
-                    <div class="page-heading">
-                        <h1>{pg_title}</h1>
-                        {if pg_subtitle}
-                        <hr class="small">
-                        <span class="subheading">{pg_subtitle}</span>
-                        {/if}
-                    </div>
-                    {/exp:stash:block:header}
+                    {exp:stash:block:content}
+                    {if pg_body}{pg_body}{/if}
+                    {/exp:stash:block:content}
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {exp:stash:block:content}
-                {if pg_body}{pg_body}{/if}
-                {/exp:stash:block:content}
-            </div>
-        </div>
-    </div>
-
+    {/exp:stash:block:main}    
+    </main>
+   
     <hr>
 
     <!-- Footer -->
@@ -127,7 +129,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="https://rawgit.com/croxton/ee_zen_garden/master/assets/js/ee-zen.js"></script>
+    <script src="/assets/js/ee-zen.js"></script>
 
     {exp:stash:get name="assets:footer"}
 

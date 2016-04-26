@@ -33,10 +33,11 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <!-- Header -->
+    <header role="banner" class="navbar navbar-default navbar-fixed-top navbar-custom navbar-custom--img">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <!-- Brand and toggle -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -44,86 +45,89 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">EE Zen Garden</a>
+                <h1 class="navbar-brand"><a href="index.html">EE Zen Garden</a></h1>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Navigation -->
+            <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="post.html">Post</a>
-                    </li>
-                    <li>
-                        <a href="category.html">Category</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="post.html">Post</a></li>
+                    <li><a href="category.html">Category</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+            </nav>
+            <!-- /Navigation -->
+            
         </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Header -->
-    <header class="intro-header" style="background-image: url('https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xpt1/t31.0-8/12188126_10154280892389838_8115082120506307117_o.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="post-heading">
-                        <h1>Mark Croxton</h1>
-                        <h2 class="subheading">Designer of things</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- /.container-fluid -->
     </header>
 
-    <!-- Post Content -->
-    <article>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>
+    <!-- Main content -->
+    <main role="main">
 
-                <h3>Recent posts</h3>
-                <ul class="related">
-                    <li><a href="post.html">Science has not yet mastered prophecy</a></li>
-                    <li><a href="post.html">Failure is not an option</a></li>
-                    <li><a href="post.html">A mission to mars</a></li>
-                </ul>
-
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="box">
-                        <h3>Contact me</h3>
-                        <address>5 Trafalgar Court, Brighton BN1 4FB</address>
-                        <p>
-                            T: 0845 450 8865 <br>
-                            <a href="mailto:info@hallmark-design.co.uk">info@hallmark-design.co.uk</a>
-                        </p>
-                        <p>   
-                            <a href="#" class="btn btn-primary" role="button">Download vcard</a>
-                        </p>
+        <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xpt1/t31.0-8/12188126_10154280892389838_8115082120506307117_o.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="post-heading">
+                            <h1>Mark Croxton</h1>
+                            <h2 class="subheading">Designer of things</h2>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </article>
+        </header>
+
+        <!-- Content body -->
+        <article>
+            <div class="container">
+                <div class="row">
+
+                    <!-- profile body -->
+                    <div class="col-lg-8">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>
+
+                        <h3>Recent posts</h3>
+                        <ul class="related">
+                            <li><a href="post.html">Science has not yet mastered prophecy</a></li>
+                            <li><a href="post.html">Failure is not an option</a></li>
+                            <li><a href="post.html">A mission to mars</a></li>
+                        </ul>
+
+                    </div>
+                    <!-- /profile body -->
+
+                    <!-- profile sidebar -->
+                    <div class="col-lg-4">
+                        <div class="box">
+                            <h3>Contact me</h3>
+                            <address>5 Trafalgar Court, Brighton BN1 4FB</address>
+                            <p>
+                                T: 0845 450 8865 <br>
+                                <a href="mailto:info@hallmark-design.co.uk">info@hallmark-design.co.uk</a>
+                            </p>
+                            <p>   
+                                <a href="#" class="btn btn-primary" role="button">Download vcard</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /profile sidebar -->
+                </div>
+            </div>
+        </article>
+       <!-- /Content body -->
+
+    </main>
 
     <hr>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -137,7 +141,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; EE Zen Garden 2015</p>
+                    <p class="copyright text-muted">Copyright &copy; EE Zen Garden 2016</p>
                 </div>
             </div>
         </div>
