@@ -70,17 +70,17 @@
         <header class="intro-header{if pg_fullscreen} intro-header--fullscreen{/if}"{if pg_img} style="background-image: url('{pg_img}')"{/if}>
             <div class="container">
                 <div class="row">
+                    {exp:stash:block:header}
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        {exp:stash:block:header}
                         <div class="page-heading">
                             <h1>{pg_title}</h1>
                             {if pg_subtitle}
                             <hr class="small">
                             <span class="subheading">{pg_subtitle}</span>
                             {/if}
-                        </div>
-                        {/exp:stash:block:header}
+                        </div>  
                     </div>
+                    {/exp:stash:block:header}
                 </div>
             </div>
         </header>
@@ -88,11 +88,11 @@
         <!-- Content body -->
         <div class="container">
             <div class="row">
+                {exp:stash:block:content}
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    {exp:stash:block:content}
                     {if pg_body}{pg_body}{/if}
-                    {/exp:stash:block:content}
                 </div>
+                {/exp:stash:block:content}
             </div>
         </div>
 

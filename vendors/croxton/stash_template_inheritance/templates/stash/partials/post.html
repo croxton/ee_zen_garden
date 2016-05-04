@@ -1,17 +1,21 @@
-{!-- main body copy --}
-{pg_body}
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-{!-- related categories --}
-{if {exp:stash:list_count name="categories" context="{route_1_entry_id}"}}
-	<h3>Categories</h3>
-	<ul class="tags">
-	{exp:stash:get_list name="categories" context="{route_1_entry_id}"}
-	    <li>
-	        <a href="{url}">{title}</a>
-	    </li>
-	{/exp:stash:get_list}
-	</ul>
-{/if}
+	{!-- main body copy --}
+	{pg_body}
 
-{!-- related entries --}
-<div id="js-related"></div>
+	{!-- related categories --}
+	{if {exp:stash:list_count name="categories" context="{route_1_entry_id}"}}
+		<h3>Categories</h3>
+		<ul class="tags">
+		{exp:stash:get_list name="categories" context="{route_1_entry_id}"}
+		    <li>
+		        <a href="{url}">{title}</a>
+		    </li>
+		{/exp:stash:get_list}
+		</ul>
+	{/if}
+
+	{!-- related entries --}
+	<div id="js-related"></div>
+
+</div>
