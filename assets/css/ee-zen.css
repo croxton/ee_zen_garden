@@ -430,6 +430,40 @@ hr.small {
   font
 }
 
+/* Author */
+.author-img {
+  display: block;
+  width: 40%;
+  float: left;
+  margin: 0 1em .5em 0;
+}
+.author-img img {
+  display: block;
+  width: 100%;
+}
+
+.author-name {
+  margin-bottom:0;
+}
+
+.author-job {
+  margin:0 0 10px;
+  font-style: italic;
+}
+
+@media only screen and (min-width: 768px) {
+  .author-img {
+    margin-bottom: 1em;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .author-img {
+    width: 100%;
+    float: none;
+  }
+}
+
 footer {
   padding: 50px 0 65px;
 }
@@ -568,7 +602,21 @@ body {
 .box {
   margin: 30px 0;
   background: #F4F4F5;
-  padding: .4em .8em;
+  padding: 1em 1em .5em;
+}
+
+.box h3 {
+  margin-top:0;
+}
+
+.box .related {
+  padding-left: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .box {
+    padding: 2em 2em 1em;
+  }
 }
 
 .tags {
@@ -601,9 +649,6 @@ ul.tags li a:focus, ul.tags li a:hover {
 }
 
 @media only screen and (min-width: 768px) {
-  .box {
-    padding: 1em 2em;
-  }
   .tags li a {
     font-size: 16px;
     border-radius: 16px;
