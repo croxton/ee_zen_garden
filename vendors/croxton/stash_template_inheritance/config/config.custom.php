@@ -203,6 +203,16 @@ $config['resource_router'] = array(
         $router->json($result);
 	},
 
+	/* headlines */
+	'headlines' => function($router) {
+		$router->setTemplate('headlines');
+	},
+
+	/* member profile */
+	'profile/:member_id' => function($router, $wildcard="") {
+		$router->setTemplate('profile');
+	},
+
 	/* Generate a 404 for any other non-empty url, except segment_1 pagination 
 
 		^				Start of line (automatically added by Resource Router)
@@ -228,6 +238,5 @@ $config['resource_router'] = array(
 
 		return $router->set404();
 	},
-	
- 
+
 );

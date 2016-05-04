@@ -1,0 +1,27 @@
+{!-- ============================================================================= 
+     Profile
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Displays a member profile
+     - Static cached
+     ============================================================================= --}
+
+{!-- include the base layout --}
+{stash:embed:layouts:base}
+
+{!-- block:header --}
+{exp:stash:extend name="block:header" with="partials:post_header"}
+
+{!-- block:content --}
+{exp:stash:extend name="block:content" with="partials:post"}
+
+{!-- capture entry data --}
+{exp:stash:set type="global" parse="yes"}
+	{exp:member:custom_profile_data member_id="{segment_2}"}
+		{stash:pg_title}{screen_name}{/stash:pg_title}
+		{stash:pg_subtitle}{mb_bio_short}{/stash:pg_subtitle}
+		{stash:pg_img}{avatar_url}{/stash:pg_img}
+	{/exp:member:custom_profile_data}
+{/exp:stash:set}
+
+
+{!--{exp:stash:static logged_out_only="yes" compress="yes"}--}
