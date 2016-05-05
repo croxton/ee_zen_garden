@@ -5,62 +5,21 @@
      - Displays categories assigned to the entry
      - Displays related entries, fetched via ajax
      - Static cached
+     –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     Resource Router globals: {pg_entry_id}
      ============================================================================= --}
 
 {!-- include the base layout --}
 {stash:embed:layouts:base}
 
 {!-- block:header --}
-{exp:stash:set name="block:header"}
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-heading">
-            <h1>{pg_title}</h1>
-            <h2 class="subheading">{pg_subtitle}</h2>
-            <span class="meta">Posted by <a href="#">{pg_author}</a> on {pg_date}</span>
-        </div>
-    </div>
-{/exp:stash:set}
+{exp:stash:extend name="block:header" with="partials:post_header"}
 
 {!-- block:content --}
 {exp:stash:extend name="block:content" with="partials:post"}
 
-{!-- capture entry data --}
+{!-- capture entry data for {pg_entry_id} --}
 {stash:embed:models:post_model process="start" parse="no"}
-
-{!-- related entries: fetch via ajax, so page can be static cached --}
-{exp:stash:append name="assets:footer"}
-
-{!-- we'll use Mustache for rendering --}
-<script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
-<script src="https://rawgit.com/janl/mustache.js/master/mustache.js"></script>
-
-{!-- Mustache template for rendering related articles --}
-<script id="tmpl-related" type="text/html">
-{{#related.length}}
-    <h3>Related posts</h3>
-    <ul class="related">
-    {{#related}}
-    	<li>
-    		<a href="/blog/{{url_title}}">{{title}}</a>
-    	</li>
-    {{/related}}
-    </ul>
-{{/related.length}}
-</script>
-
-{!-- grab the related entries via our api --}
-<script>
-
-	$.Mustache.addFromDom();
-
-	$.getJSON("/api/related/{route_1_entry_id}")
-        .done(function(data) {
-        $('#js-related').mustache(
-            'tmpl-related', { 'related' : data }
-        );
-    });
-</script>
-{/exp:stash:append}
 
 {!-- static caching --}
 {exp:stash:static logged_out_only="yes" compress="yes"}

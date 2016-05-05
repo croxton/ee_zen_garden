@@ -2,6 +2,8 @@
      Contact
 	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
      - Displays a contact form
+     –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     Resource Router globals: {pg_entry_id}
      ============================================================================= --}
 
 {!-- include the base layout --}
@@ -10,5 +12,5 @@
 {!-- block:content --}
 {exp:stash:extend name="block:content" with="partials:contact_form"}
 
-{!-- capture entry data --}
+{!-- capture entry data for {pg_entry_id} --}
 {stash:embed:models:post_model process="start" parse="no"}

@@ -1,21 +1,81 @@
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+{!-- ============================================================================= 
+     Partial: Posts
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Extends block:content
+     ============================================================================= --}
 
-	{!-- main body copy --}
+<!-- body -->
+<div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
 	{pg_body}
+</div>
 
-	{!-- related categories --}
-	{if {exp:stash:list_count name="categories" context="{route_1_entry_id}"}}
-		<h3>Categories</h3>
-		<ul class="tags">
-		{exp:stash:get_list name="categories" context="{route_1_entry_id}"}
+<!-- sidebar -->
+<div class="col-lg-4 col-lg-offset-0 col-md-10 col-md-offset-1">
+
+	{!-- author --}
+	<aside class="box">
+        <div class="author clearfix">
+            <a href="/profile/{pg_author_id}" class="author-img">
+                <img src="{pg_author_img}" alt="">
+            </a>
+            <div class="author-blurb">
+                <h3 class="author-name"><a href="/profile/{pg_author_id}">{pg_author}</a></h3>
+                <p class="author-job">{pg_author_strap}</p>
+            </div>
+        </div>
+    </aside>
+
+    {!-- categories --}
+    <aside class="box">
+        <h3>Categories</h3>
+        <ul class="tags">
+            {exp:stash:get_list name="categories" context="{pg_entry_id}"}
 		    <li>
 		        <a href="{url}">{title}</a>
 		    </li>
-		{/exp:stash:get_list}
-		</ul>
-	{/if}
+			{/exp:stash:get_list}
+        </ul>
+    </aside>
 
-	{!-- related entries --}
-	<div id="js-related"></div>
+    {!-- related entries --}
+    <aside class="box">
+        <h3>Related posts</h3>
+		<div id="js-related"></div>
+    </aside>
+
 
 </div>
+
+{!-- related entries: fetch via ajax, so page can be static cached --}
+{exp:stash:append name="assets:footer"}
+
+{!-- we'll use Mustache for rendering --}
+<script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
+<script src="https://rawgit.com/janl/mustache.js/master/mustache.js"></script>
+
+{!-- Mustache template for rendering related articles --}
+<script id="tmpl-related" type="text/html">
+{{#related.length}}
+    <ul class="related">
+    {{#related}}
+    	<li>
+    		<a href="/blog/{{url_title}}">{{title}}</a>
+    	</li>
+    {{/related}}
+    </ul>
+{{/related.length}}
+</script>
+
+{!-- grab the related entries via our api --}
+<script>
+
+	$.Mustache.addFromDom();
+
+	$.getJSON("/api/related/{route_1_entry_id}")
+        .done(function(data) {
+        $('#js-related').mustache(
+            'tmpl-related', { 'related' : data }
+        );
+    });
+</script>
+{/exp:stash:append}

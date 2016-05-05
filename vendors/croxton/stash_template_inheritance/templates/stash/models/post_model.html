@@ -5,8 +5,7 @@
      ============================================================================= --}
 {exp:channel:entries
 	channel="blog|pages"
-	entry_id="{route_1_entry_id}"
-	disable="member_data"
+	entry_id="{pg_entry_id}"
 	limit="1"
 	require_entry="yes"
 	dynamic="no"
@@ -16,12 +15,15 @@
 		{stash:pg_subtitle}{post_subtitle}{/stash:pg_subtitle}
 		{stash:pg_date}{entry_date format="%F %d, %Y"}{/stash:pg_date}
 		{stash:pg_author}{author}{/stash:pg_author}
+		{stash:pg_author_id}{author_id}{/stash:pg_author_id}
+		{stash:pg_author_img}{avatar_url}{/stash:pg_author_img}
+		{stash:pg_author_strap}{mb_strap}{/stash:pg_author_strap}
 		{stash:pg_body}{post_body}{/stash:pg_body}
 		{stash:pg_img}{post_img}{/stash:pg_img}
 	{/exp:stash:set}
 
 	{!-- capture assigned categories --}
-	{exp:stash:set_list name="categories" context="{route_1_entry_id}"}
+	{exp:stash:set_list name="categories" context="{pg_entry_id}"}
 	{categories show_group="1"}
 		{stash:title}{category_name}{/stash:title}
 		{stash:url}/blog/category/{category_url_title}{/stash:url}

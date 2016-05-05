@@ -1,3 +1,9 @@
+{!-- ============================================================================= 
+     Partial: A list of posts
+     –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Extends block:content
+     ============================================================================= --}
+
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
     {!-- List of posts --}
@@ -7,7 +13,7 @@
     	limit="4"
     	paginate="bottom"
     	dynamic="no"
-    	{if route_1_cat_id}category="{route_1_cat_id}"{/if}
+    	{if pg_cat_id}category="{pg_cat_id}"{/if}
     }
     <div class="post-preview">
         <a href="/blog/{url_title}">

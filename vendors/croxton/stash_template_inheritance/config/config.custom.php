@@ -1,8 +1,11 @@
 <?php
 
 /* Debug */
-$config['template_debugging'] = 'n';
-$config['show_profiler'] = 'n';
+$config['template_debugging'] = 'y';
+$config['show_profiler'] = 'y';
+
+/* remove index.php */
+$config['index_page'] = '';
 
 /* Templates */
 $config['save_tmpl_files'] = 'y';
@@ -29,20 +32,40 @@ $config['stash_default_refresh'] = 0; // default cache refresh period in minutes
  * Defines rules for routing requests to templates
  * 
  */
+
 $config['resource_router'] = array(
 
-	/* homepage, optionally with pagination in segment_1 (e.g. /P1) */
-	'(|P\d+)' => function($router, $wildcard="") {
+	/* homepage, optionally with pagination in segment_1 (e.g. /P1) 
 
+		^		Start of line (automatically added by Resource Router)	
+		( 		Start of capturing group ($wildcard)
+		| 		Matches NULL (i.e. empty string) OR the following characters
+		P 		Match the character 'P'
+		\d+ 	Match one or more digits (+ makes \d "greedy")
+		)		End of capturing group
+		$ 		End of line (automatically added by Resource Router)
+	*/
+	'(|P\d+)' => function($router, $wildcard="") {
+		
 		// require an entry with url_title 'home'
 		$router->setWildcard(1, 'home');
-		if (FALSE === $wildcard->isValidUrlTitle(array('channel_id' => 2))) {
-			$router->set404(); 
+		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {
+			$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
 		}
 	},
 
-	/* one-off pages (channel_id = 2), but DON'T match segment_1 pagination */
+	/* one-off pages (channel_id = 2), but DON'T match segment_1 pagination 
+	
+		^			Start of line (automatically added by Resource Router)
+		(?! 		Start of negative lookahead - assert that we should NOT match the following characters
+		P 			Match the character 'P'
+		\d+ 		Match one or mnore digits (+ makes \d "greedy")
+		)			End of negative lookahead
+		:url_title 	Match the URL Title of an entry, save as a capture group ($wildcard)
+		$ 			End of line (automatically added by Resource Router)
+	*/
 	'(?!P\d+):url_title' => function($router, $wildcard) {
+
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {	
 
 			switch($wildcard->value) {
@@ -61,10 +84,24 @@ $config['resource_router'] = array(
 				default :
 					$router->setTemplate('site/_page');
 			}
+
+			// set globals for use in templates
+			$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
 		}
 	},
 
-	/* blog category listing with pagination */
+	/* blog category listing, optionally with with pagination in segment 4
+
+		^						Start of line (automatically added by Resource Router)
+		blog/category/			Match these characters literally
+		:category_url_title		Match a Category URL Title and save as a capture group ($wildcard)
+		( 						Start of another capturing group ($page)
+		/P 						Match these characters literally
+		\d+ 					Match one or more digits (+ makes \d "greedy")
+		)						End of capture group
+		?						Quantifier meaning 'zero or more' of preceding capture group - i.e. make the capture group optional
+		$ 						End of line (automatically added by Resource Router)
+	*/
 	'blog/category/:category_url_title(/P\d+)?' => function($router, $wildcard, $page="") {
 
 		// valid blog category (in group 1)?
@@ -72,6 +109,7 @@ $config['resource_router'] = array(
 			$router->setTemplate('blog/_category');
 
 			// set globals for this category
+			$router->setGlobal('pg_cat_id', $wildcard->getMeta('cat_id'));
 			$router->setGlobal('pg_title', $wildcard->getMeta('cat_name'));
 			$router->setGlobal('pg_subtitle', $wildcard->getMeta('cat_description'));
 
@@ -82,16 +120,33 @@ $config['resource_router'] = array(
 		}
 	},
 
-	/* blog post (channel_id = 1) */
+	/* blog post (channel_id = 1) 
+
+		^				Start of line (automatically added by Resource Router)
+		blog/			Match these characters literally
+		:url_title		Match the URL Title of an entry, save as a capture group ($wildcard)
+		$ 				End of line (automatically added by Resource Router)
+	*/
 	'blog/:url_title' => function($router, $wildcard) {
 
 		// valid blog entry (in channel 1)?
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 1))) {
 			$router->setTemplate('blog/_post');
+
+			// set globals for use in templates
+			$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
 		}
 	},
 
-	// JSON endpoint: get related blog entries (that are assigned to the one or more of the same categories)
+	/* JSON endpoint: get related blog entries (that are assigned to the one or more of the same categories)
+
+		^				Start of line (automatically added by Resource Router)
+		api/related/	Match these characters literally
+		( 				Start a capturing group ($entry_id)
+		\d+ 			Match one or more digits (+ makes \d "greedy")
+		) 				End of capturing group
+		$ 				End of line (automatically added by Resource Router)
+	*/
 	'api/related/(\d+)' => function($router, $entry_id) {
 
 		$now = ee()->localize->now;
@@ -148,7 +203,18 @@ $config['resource_router'] = array(
         $router->json($result);
 	},
 
-	/* 404 for any other url patterns, except segment_1 pagination */
+	/* Generate a 404 for any other non-empty url, except segment_1 pagination 
+
+		^				Start of line (automatically added by Resource Router)
+		( 				Start a capturing group ($wildcard)
+		(?! 			Start of negative lookahead - assert that we should NOT match the following characters
+		/P 				Match these characters literally
+		\d+ 			Match one or more digits (+ makes \d "greedy")
+		) 				End of negative lookahead
+		\S+				Match ANY non-whitespace character
+		)				End of capturing group
+		$ 				End of line (automatically added by Resource Router)
+	*/
 	'((?!P\d+$)\S+)' => function($router, $wildcard) {
 
 		// require an entry with url_title 'page-not-found'
@@ -157,7 +223,11 @@ $config['resource_router'] = array(
 		// generate metadata
 		$wildcard->isValidUrlTitle(array('channel_id' => 2));
 
-		$router->set404();
+		// set globals for use in templates
+		$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
+
+		return $router->set404();
 	},
+	
  
 );
