@@ -11,10 +11,10 @@
 {stash:embed:layouts:base}
 
 {!-- block:content --}
-{exp:stash:extend name="block:content" with="partials:archive_list replace='y'"}
+{exp:stash:extend name="block:content" with="partials:archive_list"}
 
 {!-- capture entry data for {pg_entry_id} --}
 {stash:embed:models:post_model process="start" parse="no"}
 
 {!-- static caching for page 1 of results only --}
-{!-- {exp:stash:static logged_out_only="yes" compress="yes"}--}
+{exp:stash:static logged_out_only="yes" compress="yes" refresh="60"}

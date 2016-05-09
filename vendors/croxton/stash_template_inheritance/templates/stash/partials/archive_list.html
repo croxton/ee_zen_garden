@@ -1,13 +1,15 @@
 {!-- ============================================================================= 
      Partial: Archive - a list of posts organised by category
 	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	 @see https://github.com/croxton/Stash/wiki/Listing-entries-per-category
+     - Extends block:content
+	 - see https://github.com/croxton/Stash/wiki/Listing-entries-per-category
      ============================================================================= --}
 
 {exp:channel:entries channel="blog" dynamic="no" disable="member_data|pagination|category_fields"}
     {categories}
       	{exp:stash:append_list name="blog" context="{category_id}"}
        		{stash:this_title}{title}{/stash:this_title}
+            {stash:this_url_title}{url_title}{/stash:this_url_title}
 			{stash:this_subtitle}{post_subtitle}{/stash:this_subtitle}
 			{stash:this_date}{entry_date format="%F %d, %Y"}{/stash:this_date}
 			{stash:this_author}{author}{/stash:this_author}
@@ -17,19 +19,18 @@
 {/exp:channel:entries}
 
 {exp:channel:categories channel="blog" style="linear" disable="category_fields" show_empty="no"}
-<section class="row">
+<section>
 
     <div class="col-md-3">
         <h2 class="section-title">{category_name}</h2>
     </div>
 
     <div class="col-md-9">
-
         <ul class="post-list">
         	{exp:stash:get_list name="blog" context="{category_id}"}
             <li>
                 <article>
-                    <a href="post.html">
+                    <a href="/blog/{this_url_title}">
                         <h2 class="post-title">
                             {this_title}
                         </h2>
