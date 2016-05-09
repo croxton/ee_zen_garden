@@ -54,6 +54,11 @@ $config['resource_router'] = array(
 		}
 	},
 
+	/* headlines */
+	'headlines' => function($router) {
+		$router->setTemplate('headlines');
+	},
+
 	/* one-off pages (channel_id = 2), but DON'T match segment_1 pagination 
 	
 		^			Start of line (automatically added by Resource Router)
@@ -79,6 +84,11 @@ $config['resource_router'] = array(
 				case "home" :
 					return; // don't allow homepage to be duplicated at /home
 					break;
+
+				// archive
+				case "archive" :
+					$router->setTemplate('archive');
+					break;	
 
 				// any other single entry page
 				default :
@@ -203,14 +213,14 @@ $config['resource_router'] = array(
         $router->json($result);
 	},
 
-	/* headlines */
-	'headlines' => function($router) {
-		$router->setTemplate('headlines');
-	},
-
 	/* member profile */
 	'profile/:member_id' => function($router, $wildcard="") {
 		$router->setTemplate('profile');
+	},
+
+	/* member profile vcard */
+	'profile/vcard/:member_id' => function($router, $wildcard="") {
+		$router->setTemplate('profile/vcard');
 	},
 
 	/* Generate a 404 for any other non-empty url, except segment_1 pagination 
