@@ -1,0 +1,11 @@
+{exp:vcard3 
+	display_name = "{pg_title}"
+	cell_tel = "{pg_telephone}"	
+	email1 = "{pg_email}"
+	url = "{pg_url}"
+	work_address = "{pg_location}"
+	vcard_name = "{pg_title}"
+}
+
+{!-- capture member data --}
+{stash:embed:models:author_model process="start" stash:member_id="{segment_3}"}

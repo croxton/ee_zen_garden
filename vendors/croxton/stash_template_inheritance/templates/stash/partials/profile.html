@@ -1,6 +1,68 @@
-{!-- main body copy --}
-{pg_body}
+{!-- ============================================================================= 
+     Partial: Posts
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Extends block:content
+     ============================================================================= --}
 
+<!-- body -->
+<div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+	{pg_body}
+</div>
 
-{!-- related entries --}
-<div id="js-related"></div>
+<!-- sidebar -->
+<div class="col-lg-4 col-lg-offset-0 col-md-10 col-md-offset-1">
+
+    {!-- categories --}
+    <aside class="box">
+        <h3>Contact me</h3>
+        {if pg_location}<address>{pg_location}</address>{/if}
+        <p>
+            {if pg_telephone}T: {pg_telephone} <br>{/if}
+            {pg_email}
+        </p>
+        <p>   
+            <a href="/profile/vcard/{segment_2}" class="btn btn-primary" role="button">Download vcard</a>
+        </p>
+    </aside>
+
+    {!-- related entries --}
+    <aside class="box">
+        <h3>Recent posts</h3>
+		<div id="js-related"></div>
+    </aside>
+
+</div>
+
+{!-- related entries: fetch via ajax, so page can be static cached --}
+{exp:stash:append name="assets:footer"}
+
+{!-- we'll use Mustache for rendering --}
+<script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
+<script src="https://rawgit.com/janl/mustache.js/master/mustache.js"></script>
+
+{!-- Mustache template for rendering related articles --}
+<script id="tmpl-related" type="text/html">
+{{#related.length}}
+    <ul class="related">
+    {{#related}}
+    	<li>
+    		<a href="/blog/{{url_title}}">{{title}}</a>
+    	</li>
+    {{/related}}
+    </ul>
+{{/related.length}}
+</script>
+
+{!-- grab the related entries via our api --}
+<script>
+
+	$.Mustache.addFromDom();
+
+	$.getJSON("/api/posts-by-author/{pg_author_id}")
+        .done(function(data) {
+        $('#js-related').mustache(
+            'tmpl-related', { 'related' : data }
+        );
+    });
+</script>
+{/exp:stash:append}
