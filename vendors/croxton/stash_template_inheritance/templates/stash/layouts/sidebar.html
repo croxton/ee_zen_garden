@@ -1,0 +1,19 @@
+{!-- ============================================================================= 
+     Layout: Content area with sidebar
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Inherits layouts/base
+     ============================================================================= --}
+
+{stash:embed:layouts:base}
+
+{exp:stash:set name="block:content"}
+    <!-- body -->
+    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+    	{pg_body}
+    </div>
+
+    <!-- sidebar -->
+    <div class="col-lg-4 col-lg-offset-0 col-md-10 col-md-offset-1">
+        {exp:stash:block:aside}{/exp:stash:block:aside}
+    </div>
+{/exp:stash:set}

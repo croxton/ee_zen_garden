@@ -55,7 +55,32 @@ $config['resource_router'] = array(
 	},
 
 	/* headlines */
-	'headlines' => function($router) {
+	'(headlines)' => function($router, $wildcard="") {
+
+		// get Category ID for the 'featured' category
+		$router->setWildcard(1, 'featured');
+
+		if ($wildcard->isValidCategoryUrlTitle())
+		{
+			$router->setGlobal('pg_cat_id:headlines', $wildcard->getMeta('cat_id'));
+		}
+
+		// get Category ID for the 'in-depth' category
+		$router->setWildcard(1, 'in-depth');
+
+		if ($wildcard->isValidCategoryUrlTitle())
+		{
+			$router->setGlobal('pg_cat_id:in_depth', $wildcard->getMeta('cat_id'));
+		}
+
+		// get Category ID for the 'animals' category
+		$router->setWildcard(1, 'animals');
+
+		if ($wildcard->isValidCategoryUrlTitle())
+		{
+			$router->setGlobal('pg_cat_id:animals', $wildcard->getMeta('cat_id'));
+		}
+
 		$router->setTemplate('headlines');
 	},
 
