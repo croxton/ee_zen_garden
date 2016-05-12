@@ -1,24 +1,29 @@
 {!-- ============================================================================= 
-     Partial: Archive - a list of posts organised by category
+     Partial: Archive - a list of posts organised by category for a given channel 
 	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
      - Extends block:content
+     - pass in {stash:channel}
 	 - see https://github.com/croxton/Stash/wiki/Listing-entries-per-category
      ============================================================================= --}
 
-{exp:channel:entries channel="blog" dynamic="no" disable="member_data|pagination|category_fields"}
+{exp:channel:entries 
+    channel="{stash:channel}" 
+    dynamic="no" 
+    disable="member_data|pagination|category_fields"}
     {categories}
-      	{exp:stash:append_list name="blog" context="{category_id}"}
-       		{stash:this_title}{title}{/stash:this_title}
-            {stash:this_url_title}{url_title}{/stash:this_url_title}
-			{stash:this_subtitle}{post_subtitle}{/stash:this_subtitle}
-			{stash:this_date}{entry_date format="%F %d, %Y"}{/stash:this_date}
-			{stash:this_author}{author}{/stash:this_author}
-			{stash:this_author_id}{author_id}{/stash:this_author_id}
-      		{/exp:stash:append_list}
+      	{exp:stash:append_list name="entries" context="{category_id}"}
+       		{stash:title}{title}{/stash:title}
+            {stash:entry_id}{entry_id}{/stash:entry_id}
+            {stash:url_title}{url_title}{/stash:url_title}
+			{stash:subtitle}{post_subtitle}{/stash:subtitle}
+			{stash:date}{entry_date format="%F %d, %Y"}{/stash:date}
+			{stash:author}{author}{/stash:author}
+			{stash:author_id}{author_id}{/stash:author_id}
+      	{/exp:stash:append_list}
     {/categories}
 {/exp:channel:entries}
 
-{exp:channel:categories channel="blog" style="linear" disable="category_fields" show_empty="no"}
+{exp:channel:categories channel="{stash:channel}" style="linear" disable="category_fields" show_empty="no"}
 <section>
 
     <div class="col-md-3">
@@ -27,18 +32,20 @@
 
     <div class="col-md-9">
         <ul class="post-list">
-        	{exp:stash:get_list name="blog" context="{category_id}"}
+        	{exp:stash:get_list name="entries" context="{category_id}"}
             <li>
                 <article>
-                    <a href="/blog/{this_url_title}">
+                    <a href="/{stash:channel}/{url_title}">
                         <h2 class="post-title">
-                            {this_title}
+                            {title}
                         </h2>
+                        {if subtitle}
                         <h3 class="post-subtitle">
-                            {this_subtitle}
+                            {subtitle}
                         </h3>
+                        {/if}
                     </a>
-                    <p class="post-meta">Posted by <a href="/profile/{this_author_id}">{this_author}</a> {this_date}</p>
+                    <p class="post-meta">Posted by <a href="/profile/{author_id}">{author}</a> {date}</p>
                 <article>
             </li>
             {/exp:stash:get_list}

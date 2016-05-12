@@ -44,7 +44,7 @@
 
         <ul class="row headlines">
 
-            {exp:stash:get_list name="posts" context="headlines" not_in="entry_id"}
+            {exp:stash:get_list name="posts" context="headlines" not_in="entry_id" limit="6"}
             <li class="col-xs-6 col-md-4">
               <article class="post-headline">
                 <a href="{url}">
@@ -82,7 +82,7 @@
 
                 <div class="col-md-6">
 
-                    {exp:stash:get_list name="posts" context="in_depth"}
+                    {exp:stash:get_list name="posts" context="in_depth" not_in="entry_id" limit="1"}
                     <article class="post-headline">
                         <a href="{url}" class="post-feature"{if img} style="background-image: url('{img}')"{/if}>
                             <div class="post-feature-content">
@@ -104,7 +104,7 @@
 
                     <div class="row">
 
-                        {exp:stash:get_list name="posts" context="in_depth" offset="1"}
+                        {exp:stash:get_list name="posts" context="in_depth" not_in="entry_id" offset="1" limit="3"}
                         <div class="col-xs-6">
                             <article class="post-headline">
                                 <a href="{url}">
@@ -141,7 +141,7 @@
 
                 <div class="col-md-6">
 
-                    {exp:stash:get_list name="posts" context="animals"}
+                    {exp:stash:get_list name="posts" context="animals" not_in="entry_id" limit="1"}
                     <article class="post-headline">
                         <a href="{url}" class="post-feature"{if img} style="background-image: url('{img}')"{/if}>
                             <div class="post-feature-content">
@@ -164,7 +164,7 @@
 
                     <div class="row">
 
-                        {exp:stash:get_list name="posts" context="animals" offset="1"}
+                        {exp:stash:get_list name="posts" context="animals" not_in="entry_id" offset="1" limit="3"}
                         <div class="col-xs-6">
                             <article class="post-headline">
                                 <a href="{url}">
