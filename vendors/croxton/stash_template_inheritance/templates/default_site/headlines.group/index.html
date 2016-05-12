@@ -1,0 +1,86 @@
+{!-- ============================================================================= 
+     Headlines
+	 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     - Displays headlines
+     - Static cached
+     –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     Resource Router globals: {pg_cat_id},
+     ============================================================================= --}
+
+{!-- include the base layout --}
+{stash:embed:layouts:base}
+
+{!-- block:main --}
+{exp:stash:extend name="block:main" with="partials:headlines_list replace='y'"}
+
+{!-- Post fields we want to capture --}
+{exp:stash:set name="post_fields" type="global"}
+	{stash:title}{title}{/stash:title}
+	{stash:subtitle}{post_subtitle}{/stash:subtitle}
+	{stash:entry_id}{entry_id}{/stash:entry_id}
+	{stash:url}/blog/{url_title}{/stash:url}
+	{stash:date}{entry_date format="%F %d, %Y"}{/stash:date}
+	{stash:author}{author}{/stash:author}
+	{stash:author_id}{author_id}{/stash:author_id}
+	{stash:img}{post_img}{/stash:img}
+{/exp:stash:set}
+
+{!-- Featured: capture the latest featured story --}
+{exp:stash:set_list name="posts" context="featured" parse="yes"}
+	{exp:channel:entries
+		channel="blog"
+		disable="categories|member_data|pagination"
+		limit="1"
+		dynamic="no"
+		category="{pg_cat_id:headlines}"
+	}
+		{post_fields}
+	{/exp:channel:entries}
+{/exp:stash:set_list}
+
+{!-- Headlines: capture the latest 6 posts, +1 in case one is also a feature --}
+{exp:stash:set_list name="posts" context="headlines" parse="yes"}
+	{exp:channel:entries
+		channel="blog"
+		disable="categories|member_data|pagination"
+		limit="7"
+		dynamic="no"
+	}
+		{post_fields}
+	{/exp:channel:entries}
+{/exp:stash:set_list}
+
+{!-- In depth: capture 3 posts in the 'In depth' category --}
+{exp:stash:set_list name="posts" context="in_depth" parse="yes"}
+	{exp:channel:entries
+		channel="blog"
+		disable="categories|member_data|pagination"
+		limit="3"
+		dynamic="no"
+		category="{pg_cat_id:in_depth}"
+	}
+		{post_fields}
+	{/exp:channel:entries}
+{/exp:stash:set_list}
+
+{!-- Animals: capture 3 posts in the 'Animals' category --}
+{exp:stash:set_list name="posts" context="animals" parse="yes"}
+	{exp:channel:entries
+		channel="blog"
+		disable="categories|member_data|pagination"
+		limit="3"
+		dynamic="no"
+		category="{pg_cat_id:in_depth}"
+	}
+		{post_fields}
+	{/exp:channel:entries}
+{/exp:stash:set_list}
+
+{!-- capture categories --}
+{exp:stash:set_list name="categories" parse="yes"}
+	{exp:channel:categories style="linear"}
+		{stash:title}{category_name}{/stash:title}
+		{stash:url}/blog/category/{category_url_title}{/stash:url}
+	{/exp:channel:categories}
+{/exp:stash:set_list}
+

@@ -1,0 +1,236 @@
+<!-- Lead story -->
+{exp:stash:get_list name="posts" context="featured" track="entry_id"}
+<section class="lead">
+    <div class="container">
+        <div class="row">
+           
+            <div class="col-md-6">
+                
+                <div class="post-preview">
+                    <a href="{url}">
+                        <h1 class="post-kicker">Feature</h1>
+                        <h2 class="post-title">
+                            {title}
+                        </h2>
+                        {if subtitle}
+                        <h3 class="post-subtitle">
+                            {subtitle}
+                        </h3>
+                        {/if}
+                    </a>
+                    <p class="post-meta">Posted by <a href="/profile/{author_id}">{author}</a> on {date}</p>
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <a href="{url}">
+                    <img src="{img}" alt="" />
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{/exp:stash:get_list}
+<!-- /Lead story -->
+
+<!-- Content body -->
+<div class="container">
+
+    <!-- headlines -->
+    <section>
+
+        <h1 class="post-kicker">Headlines, 17th April 2016</h1>
+
+        <ul class="row headlines">
+
+            {exp:stash:get_list name="posts" context="headlines" not_in="entry_id"}
+            <li class="col-xs-6 col-md-4">
+              <article class="post-headline">
+                <a href="{url}">
+                    {if img}<img src="{img}" alt="" class="post-img" />{/if}
+                    <h2 class="post-title">
+                        {title}
+                    </h2>
+                    {if subtitle}
+                    <h3 class="post-subtitle">
+                        {subtitle}
+                    </h3>
+                    {/if}
+                </a>
+              </article>
+            
+            </li>{/exp:stash:get_list}
+            
+        </ul>
+
+    </section>
+    <!-- /headlines -->
+
+    <hr>
+
+    <!-- In depth -->
+    <section class="row headlines headlines--secondary">
+
+        <div class="col-md-4">
+            <h2 class="section-title">In depth</h2>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    {exp:stash:get_list name="posts" context="in_depth"}
+                    <article class="post-headline">
+                        <a href="{url}" class="post-feature"{if img} style="background-image: url('{img}')"{/if}>
+                            <div class="post-feature-content">
+                                <h2 class="post-title">
+                                    {title}
+                                </h2>
+                                {if subtitle}
+                                <h3 class="post-subtitle">
+                                    {subtitle}
+                                </h3>
+                                {/if}
+                            </div>
+                        </a>
+                    </article>
+                    {/exp:stash:get_list}
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="row">
+
+                        {exp:stash:get_list name="posts" context="in_depth" offset="1"}
+                        <div class="col-xs-6">
+                            <article class="post-headline">
+                                <a href="{url}">
+                                    {if img}<img src="{img}" alt="" class="post-img" />{/if}
+                                    <h2 class="post-title post-title--secondary">
+                                        {title}
+                                    </h2>
+                                </a>
+                            </article>
+                        </div>
+                        {/exp:stash:get_list}
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- /In depth -->
+
+    <hr>
+
+    <!-- Animals -->
+    <section class="row headlines headlines--secondary">
+
+        <div class="col-md-4">
+            <h2 class="section-title">Animals</h2>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    {exp:stash:get_list name="posts" context="animals"}
+                    <article class="post-headline">
+                        <a href="{url}" class="post-feature"{if img} style="background-image: url('{img}')"{/if}>
+                            <div class="post-feature-content">
+                                <h2 class="post-title">
+                                    {title}
+                                </h2>
+                                {if subtitle}
+                                <h3 class="post-subtitle">
+                                    {subtitle}
+                                </h3>
+                                {/if}
+                            </div>
+                        </a>
+                    </article>
+                    {/exp:stash:get_list}
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="row">
+
+                        {exp:stash:get_list name="posts" context="animals" offset="1"}
+                        <div class="col-xs-6">
+                            <article class="post-headline">
+                                <a href="{url}">
+                                    {if img}<img src="{img}" alt="" class="post-img" />{/if}
+                                    <h2 class="post-title post-title--secondary">
+                                        {title}
+                                    </h2>
+                                </a>
+                            </article>
+                        </div>
+                        {/exp:stash:get_list}
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- /Animals -->
+
+    <hr>
+
+    <!-- Popular -->
+    <section class="row headlines headlines--secondary">
+
+        <div class="col-md-4">
+            <h2 class="section-title">Popular</h2>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="row">
+                <ol class="popular col-md-6">
+                    <li><a href="{url}">Prince Philip eats two cats and a badger</a></li>
+                    <li><a href="{url}">Hideous Londoners forced to travel above ground</a></li>
+                    <li><a href="{url}">Jeremy Hunt’s mum proud of him ‘in spite of everything’</a></li>
+                    <li><a href="{url}">Britain urged to ‘freak out’ and ‘have a real good time’</a></li>
+                </ol>
+                <ol class="popular col-md-6" start="5">
+                    <li><a href="{url}">Ed Milliband to join Scooby Doo gang</a></li>
+                    <li><a href="{url}">Primark bans attractive people</a></li>
+                    <li><a href="{url}">NASA to tackle more of David Bowie’s questions</a></li>
+                    <li><a href="{url}">Why I am leaving the Empire, by Darth Vader</a></li>
+                </ol>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- /Popular -->
+
+    <hr>
+         
+    <!-- Categories -->
+    <div class="box">
+        <h3>Categories</h3>
+        <ul class="tags">
+            {exp:stash:get_list name="categories"}
+            <li>
+                <a href="{url}">{title}</a>
+            </li>
+            {/exp:stash:get_list}
+        </ul>
+    </div>
+    <!-- /Categories -->
+
+</div>
+<!-- /Content body -->
