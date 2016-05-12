@@ -1,8 +1,8 @@
 <?php
 
 /* Debug */
-$config['template_debugging'] = 'y';
-$config['show_profiler'] = 'y';
+$config['template_debugging'] = 'n';
+$config['show_profiler'] = 'n';
 
 /* remove index.php */
 $config['index_page'] = '';
@@ -233,6 +233,34 @@ $config['resource_router'] = array(
 			$query = ee()->db->query($sql);
 			$result = $query->result();
 		}	
+
+		// return
+        $router->json($result);
+	},
+
+	'api/posts/by/(\d+)' => function($router, $member_id) {
+
+		$now = ee()->localize->now;
+		$member_id = ee()->db->escape($member_id);
+		$channel_id = 1; // blog
+		$site_id = 1;
+		$limit = 6;
+		$result = array();
+
+		// get most recent entries for a given member ID
+		$sql = "SELECT DISTINCT(t.entry_id), t.title, t.url_title FROM exp_channel_titles AS t
+				WHERE t.entry_id !='' 
+					AND t.site_id = {$site_id}  
+					AND t.entry_date < {$now}  
+					AND (t.expiration_date = 0 OR t.expiration_date > {$now}) 
+					AND t.channel_id = {$channel_id} 
+					AND t.author_id = {$member_id} 
+					AND t.status = 'open' 
+				ORDER BY t.sticky desc, t.entry_date desc, t.entry_id desc 
+				LIMIT 0, {$limit}";
+
+		$query = ee()->db->query($sql);
+		$result = $query->result();
 
 		// return
         $router->json($result);

@@ -58,7 +58,7 @@
 
 	$.Mustache.addFromDom();
 
-	$.getJSON("/api/posts-by-author/{pg_author_id}")
+	$.getJSON("/api/posts/by/{segment_2}")
         .done(function(data) {
         $('#js-related').mustache(
             'tmpl-related', { 'related' : data }
