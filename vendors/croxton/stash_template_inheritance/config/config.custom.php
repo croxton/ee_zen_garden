@@ -35,13 +35,6 @@ $config['stash_default_refresh'] = 0; // default cache refresh period in minutes
 
 $config['resource_router'] = array(
 
-	/* runs before ALL routes 
-		- set a flag to determine if further rules should be processed
-	*/
-	':before' => function($router) {
-		$router->continue = TRUE;
-	},
-
 	/* homepage, optionally with pagination in segment_1 (e.g. /P1) 
 
 		^		Start of line (automatically added by Resource Router)	
@@ -61,7 +54,7 @@ $config['resource_router'] = array(
 		}
 
 		// stop any other rules being processed, if this rule was matched
-		$router->continue = FALSE;
+		$router->stopRouting();
 	},
 
 	/* headlines */
@@ -105,8 +98,6 @@ $config['resource_router'] = array(
 		$ 			End of line (automatically added by Resource Router)
 	*/
 	':url_title' => function($router, $wildcard) {
-
-		if ( ! $router->continue) return; // ignore pagination in segemnt_1
 
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {	
 
@@ -301,8 +292,6 @@ $config['resource_router'] = array(
 		$ 				End of line (automatically added by Resource Router)
 	*/
 	'(.+)' => function($router, $wildcard) {
-
-		if ( ! $router->continue) return;
 
 		// require an entry with url_title 'page-not-found'
 		$router->setWildcard(1, 'page-not-found');
