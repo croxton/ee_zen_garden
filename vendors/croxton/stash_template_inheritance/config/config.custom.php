@@ -35,6 +35,13 @@ $config['stash_default_refresh'] = 0; // default cache refresh period in minutes
 
 $config['resource_router'] = array(
 
+	/* runs before ALL routes 
+		- set a flag to determine if further rules should be processed
+	*/
+	':before' => function($router) {
+		$router->continue = TRUE;
+	},
+
 	/* homepage, optionally with pagination in segment_1 (e.g. /P1) 
 
 		^		Start of line (automatically added by Resource Router)	
@@ -46,12 +53,15 @@ $config['resource_router'] = array(
 		$ 		End of line (automatically added by Resource Router)
 	*/
 	'(|P\d+)' => function($router, $wildcard="") {
-		
+
 		// require an entry with url_title 'home'
 		$router->setWildcard(1, 'home');
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {
 			$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
 		}
+
+		// stop any other rules being processed, if this rule was matched
+		$router->continue = FALSE;
 	},
 
 	/* headlines */
@@ -62,7 +72,7 @@ $config['resource_router'] = array(
 
 		if ($wildcard->isValidCategoryUrlTitle())
 		{
-			$router->setGlobal('pg_cat_id:headlines', $wildcard->getMeta('cat_id'));
+			$router->setGlobal('pg_cat_id:featured', $wildcard->getMeta('cat_id'));
 		}
 
 		// get Category ID for the 'in-depth' category
@@ -94,7 +104,9 @@ $config['resource_router'] = array(
 		:url_title 	Match the URL Title of an entry, save as a capture group ($wildcard)
 		$ 			End of line (automatically added by Resource Router)
 	*/
-	'(?!P\d+):url_title' => function($router, $wildcard) {
+	':url_title' => function($router, $wildcard) {
+
+		if ( ! $router->continue) return; // ignore pagination in segemnt_1
 
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {	
 
@@ -268,27 +280,29 @@ $config['resource_router'] = array(
 
 	/* member profile */
 	'profile/:member_id' => function($router, $wildcard="") {
-		$router->setTemplate('profile');
+		if ($wildcard->isValidMemberId(array('group_id' => 1))) {
+			$router->setTemplate('profile');
+		}
 	},
 
 	/* member profile vcard */
 	'profile/vcard/:member_id' => function($router, $wildcard="") {
-		$router->setTemplate('profile/vcard');
+		if ($wildcard->isValidMemberId(array('group_id' => 1))) {
+			$router->setTemplate('profile/vcard');
+		}
 	},
 
 	/* Generate a 404 for any other non-empty url, except segment_1 pagination 
 
 		^				Start of line (automatically added by Resource Router)
 		( 				Start a capturing group ($wildcard)
-		(?! 			Start of negative lookahead - assert that we should NOT match the following characters
-		/P 				Match these characters literally
-		\d+ 			Match one or more digits (+ makes \d "greedy")
-		) 				End of negative lookahead
-		\S+				Match ANY non-whitespace character
+		.+				Match one or more characters
 		)				End of capturing group
 		$ 				End of line (automatically added by Resource Router)
 	*/
-	'((?!P\d+$)\S+)' => function($router, $wildcard) {
+	'(.+)' => function($router, $wildcard) {
+
+		if ( ! $router->continue) return;
 
 		// require an entry with url_title 'page-not-found'
 		$router->setWildcard(1, 'page-not-found');

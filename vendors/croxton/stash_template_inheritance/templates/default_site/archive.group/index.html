@@ -4,14 +4,14 @@
      - Displays a list of the blog posts organised by category
      - Static cached
      –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-     Resource Router globals: {pg_cat_id}, {pg_title}, {pg_subtitle}, {pg_img}
+     Resource Router globals: {pg_entry_id}
      ============================================================================= --}
 
 {!-- include the base layout --}
 {stash:embed:layouts:base}
 
 {!-- block:content --}
-{exp:stash:extend name="block:content" with="partials:archive_list"}
+{exp:stash:extend name="block:content" with="partials:archive_list" stash:channel="blog"}
 
 {!-- capture entry data for {pg_entry_id} --}
 {stash:embed:models:post_model process="start" parse="no"}

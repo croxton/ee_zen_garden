@@ -4,7 +4,8 @@
      - Displays headlines
      - Static cached
      –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-     Resource Router globals: {pg_cat_id},
+     Resource Router globals: 
+     {pg_cat_id:headlines}, {pg_cat_id:in_depth}, {pg_cat_id:animals}
      ============================================================================= --}
 
 {!-- include the base layout --}
@@ -32,30 +33,34 @@
 		disable="categories|member_data|pagination"
 		limit="1"
 		dynamic="no"
-		category="{pg_cat_id:headlines}"
+		category="{pg_cat_id:featured}"
 	}
 		{post_fields}
 	{/exp:channel:entries}
 {/exp:stash:set_list}
 
-{!-- Headlines: capture the latest 6 posts, +1 in case one is also a feature --}
+{!-- Headlines: 
+	 - capture the latest 6 posts, +1 in case one is also a feature
+     - Exclude posts categoried as 'in depth' or 'animals'
+--}
 {exp:stash:set_list name="posts" context="headlines" parse="yes"}
 	{exp:channel:entries
 		channel="blog"
 		disable="categories|member_data|pagination"
 		limit="7"
 		dynamic="no"
+		category="not {pg_cat_id:in_depth}|{pg_cat_id:animals}"
 	}
 		{post_fields}
 	{/exp:channel:entries}
 {/exp:stash:set_list}
 
-{!-- In depth: capture 3 posts in the 'In depth' category --}
+{!-- In depth: capture 3 posts in the 'In depth' category, +1 in case one is also a feature --}
 {exp:stash:set_list name="posts" context="in_depth" parse="yes"}
 	{exp:channel:entries
 		channel="blog"
 		disable="categories|member_data|pagination"
-		limit="3"
+		limit="4"
 		dynamic="no"
 		category="{pg_cat_id:in_depth}"
 	}
@@ -63,14 +68,14 @@
 	{/exp:channel:entries}
 {/exp:stash:set_list}
 
-{!-- Animals: capture 3 posts in the 'Animals' category --}
+{!-- Animals: capture 3 posts in the 'Animals' category, +1 in case one is also a feature --}
 {exp:stash:set_list name="posts" context="animals" parse="yes"}
 	{exp:channel:entries
 		channel="blog"
 		disable="categories|member_data|pagination"
-		limit="3"
+		limit="4"
 		dynamic="no"
-		category="{pg_cat_id:in_depth}"
+		category="{pg_cat_id:animals}"
 	}
 		{post_fields}
 	{/exp:channel:entries}
@@ -83,4 +88,7 @@
 		{stash:url}/blog/category/{category_url_title}{/stash:url}
 	{/exp:channel:categories}
 {/exp:stash:set_list}
+
+{!-- static cache for 1 hour --}
+{exp:stash:static logged_out_only="yes" refresh="60" compress="yes"}
 
