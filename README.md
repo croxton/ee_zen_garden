@@ -44,14 +44,14 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 
 		$conf['save_tmpl_files'] = "y";
 
-8: Optional: create a symlink to the templates folder in your vendor directory from EE's default template location, e.g:
+8. Optional: create a symlink to the templates folder in your vendor directory from EE's default template location, e.g:
 	
 	ln -s ~/Sites/ee_zen_garden/vendors/[your vendor name]/[your solution name]/templates ~/Sites/ee_zen_garden/system/user/templates
 
 	If you need to change the symlink:
 	ln -nfs ~/path/to/the/new/location ~/Sites/ee_zen_garden/system/user/templates
 
-If you don't want to do this, you'll need to put your templates directly in the `/system/user/templates` folder and copy them to your vendor template folder when you make changes.
+	If you don't want to do this, you'll need to put your templates directly in the `/system/user/templates` folder and copy them to your vendor template folder when you make changes.
 		
 9. Now it's time to create your solution: in the `assets` directory you will find the project that you are going to build: a simple blog adapted from the open-source ['Cool Blog' bootstrap theme](http://startbootstrap.com/template-overviews/clean-blog) by [startbootstrap.com](http://startbootstrap.com/). 
 

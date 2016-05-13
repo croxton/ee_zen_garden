@@ -1,6 +1,6 @@
 #Stash template inheritance
 
-This is a complete solution that implements a version of the 'template inheritance' pattern using [Stash](https://github.com/croxton/Stash), with full page static caching.
+This solution implements a version of the 'template inheritance' pattern using [Stash](https://github.com/croxton/Stash), with full page static caching.
 
 ## Routes / URL design
 
@@ -38,8 +38,8 @@ Template inheritance allows you to build a base "skeleton" template that contain
 	└─ contact.group
 	   └─ index.html
 	└─ site.group
-	   └─ _page.html
-	   └─ 404.html   	
+	   └─ 404.html  
+	   └─ _page.html 	
 	Stash
 	└─ layouts
 	   └─ base.html
@@ -47,8 +47,10 @@ Template inheritance allows you to build a base "skeleton" template that contain
 	   └─ post_model.html
 	└─ partials
 	   └─ contact_form.html
-	   └─ post_list.html
 	   └─ post.html
+	   └─ post_header.html
+	   └─ post_list.html
+	   
 	   
 The ExpressionEngine templates under `default_site` provide routes into the website and act a little like *controllers*. Their job is to grab data (either directly from tags or from a model), assemble a layout (from the wrapper and partials) and inject the data into it.
 
@@ -68,28 +70,32 @@ Capture and format a single entry's data, with one model typically representing 
 
 Stash static caching has been implemented to allow our blog to survive traffic volumes far beyond ExpressionEngine's normal concurrency limits (even with native caching), as static-cached pages bypass PHP entirely. Only the contact form and follow-on paginated pages remain un-cached. Logged-in editors always see the un-cached version of the website.
 
-#### Cache breaking
+### Cache breaking
 Mustash cache-breaking rules are used to clear individual pages when they the page is edited. Cached blog post listing pages are set to refresh automatically every 60 minutes.
 
-#### Related entries
+### Related entries
 Single blog posts load related entries via AJAX from the JSON endpoint defined in our Resource Router config, so that even when cached the page will display up-to-date related entries without needing to instantiate the full EE stack to render the related entries.
 
+---
 
 ## Configuration
 
 ### Initial set up
 * Copy `/vendors/croxton/stash_template_inheritance/_htacess` to the ee_zen_garden root directory and rename as `.htaccess`
-* Edit `/system/expressionengine/config/config.php` and add this line:
+* Create (or change) the symlink to the templates folder, e.g.:
+	
+	ln -s ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
 
-	 	/* Custom rules */
-		require $_SERVER['DOCUMENT_ROOT'] . '/vendors/croxton/stash_template_inheritance/config/config.custom.php'; 
+	If you already have a symlink and need to change it:
+	ln -nfs ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
+
+If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
 		
-* In the same file scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
-* In the CP go to `Design > Template Manager > Global Template Preferences` and set the following:
-	* Enable Template Routes: 'No'
+* In the file `/system/user/config/config.php', scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
+* In the CP go to `System Settings > Template settings` and set the following:
 	* Enable Strict URLs: 'Yes'
 	* 404 Page: site/404
-* In the CP go to `Design > Template Manager`, click on the `Blog` template group and select `Edit Group`, then check the box to `Make the index template in this group your site's home page?`.
+* In the CP go to `Template Manager`, click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
 
 
 ### Third party add-ons
@@ -103,12 +109,12 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 
 * [Mustash](https://github.com/croxton/Stash/wiki/Mustash)
 
-
 ### File upload locations
 
 * **Images**
 	* Server path: /images/uploads/    
  	* URL of upload Directory: /path/to/ee_zen_garden/images/uploads/
+
 
 ### Field groups
 
@@ -117,39 +123,43 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 * **Body** (post_body) - Textarea (Rich Text)
 * **Image** (post_img) - File, set to 'Images' file upload location
 
-#### Channels
+### Channels
 
 * **Blog** - assigned to the 'Posts' fieldgroup and 'Blog' category group
 * **Pages** - assigned to the 'Posts' fieldgroup 
-
-### Entries
-
-##### Pages (url_title)
-Create the following entries, populating the fields with the appropriate text and image as per the original source pages:
-* About (about)
-* Contact Me (contact)
-* EE Zen Garden (home)
-* Page Not Found (page-not-found)
-
-
-##### Blog
-Publish a few random entries - anything you like - and assign to one or more categories.
-
 
 ### Category groups
 
 Create categories as follows, adding a description and assigning an image to each:
 
-##### Blog
+##### 
+* Animals
 * Beards
 * Beer
 * Brighton
 * Cheesy peas
+* Featured
 * Idoltry
+* In depth
 * Reginald P. Horse
 * Sausages
 * Space monkeys
 * Tentacles
+
+
+### Entries
+
+##### Pages
+
+Create the following entries, populating the fields with the appropriate text and image as per the original source pages:
+
+* About (about)
+* Contact Me (contact)
+* EE Zen Garden (home)
+* Page Not Found (page-not-found)
+
+##### Blog
+Publish a few random entries - anything you like - and assign to one or more categories.
 
 ### Mustash (optional)
 
