@@ -171,7 +171,7 @@ Hook | Group | Bundle | Scope | Pattern | Comment
 ---- | ----- | ------ | ----- | ------- | ------
 Channel Entries: all hooks | Blog | Static | Site | #^blog/{url_title}:static$# | Single blog post entry
 Channel Entries: all hooks | Pages | Static | Site | #^{url_title}:static$# | Single page entry
-Channel Entries: all hooks | Pages | Static | Site | #^\[index\]:{url_title}:static$# | Homepage
+Channel Entries: all hooks | Pages | Static | Site | #^\\\[index\\\]:{url_title}:static$# | Homepage
 Categories: all hooks | Blog | Static | Site | #^blog/category/{cat_url_title}:static$# | Blog category listing
 
 * Add a CRON to prune the cache periodically by pinging the pruning URL you noted earlier. E.g.:
