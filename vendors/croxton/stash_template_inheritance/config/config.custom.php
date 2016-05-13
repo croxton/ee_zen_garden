@@ -52,19 +52,18 @@ $config['resource_router'] = array(
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {
 			$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
 		}
+
+		// stop any other rules being processed, if this rule was matched
+		$router->stopRouting();
 	},
 
 	/* one-off pages (channel_id = 2), but DON'T match segment_1 pagination 
 	
 		^			Start of line (automatically added by Resource Router)
-		(?! 		Start of negative lookahead - assert that we should NOT match the following characters
-		P 			Match the character 'P'
-		\d+ 		Match one or mnore digits (+ makes \d "greedy")
-		)			End of negative lookahead
 		:url_title 	Match the URL Title of an entry, save as a capture group ($wildcard)
 		$ 			End of line (automatically added by Resource Router)
 	*/
-	'(?!P\d+):url_title' => function($router, $wildcard) {
+	':url_title' => function($router, $wildcard) {
 
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {	
 
@@ -205,17 +204,13 @@ $config['resource_router'] = array(
 
 	/* Generate a 404 for any other non-empty url, except segment_1 pagination 
 
-		^				Start of line (automatically added by Resource Router)
-		( 				Start a capturing group ($wildcard)
-		(?! 			Start of negative lookahead - assert that we should NOT match the following characters
-		/P 				Match these characters literally
-		\d+ 			Match one or more digits (+ makes \d "greedy")
-		) 				End of negative lookahead
-		\S+				Match ANY non-whitespace character
-		)				End of capturing group
-		$ 				End of line (automatically added by Resource Router)
+		^	Start of line (automatically added by Resource Router)
+		( 	Start a capturing group ($wildcard)
+		.+	Match one or more characters
+		)	End of capturing group
+		$ 	End of line (automatically added by Resource Router)
 	*/
-	'((?!P\d+$)\S+)' => function($router, $wildcard) {
+	'(.+)' => function($router, $wildcard) {
 
 		// require an entry with url_title 'page-not-found'
 		$router->setWildcard(1, 'page-not-found');
