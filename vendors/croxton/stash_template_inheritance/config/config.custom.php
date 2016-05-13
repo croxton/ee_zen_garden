@@ -241,6 +241,7 @@ $config['resource_router'] = array(
         $router->json($result);
 	},
 
+<<<<<<< HEAD
 	/* JSON endpoint: get recent blog entries for a given author
 
 		^				Start of line (automatically added by Resource Router)
@@ -250,6 +251,8 @@ $config['resource_router'] = array(
 		) 				End of capturing group
 		$ 				End of line (automatically added by Resource Router)
 	*/
+=======
+>>>>>>> fbf6d1c112933705fc09e1da31002f4d1e1eff96
 	'api/posts/by/(\d+)' => function($router, $member_id) {
 
 		$now = ee()->localize->now;
