@@ -1,4 +1,4 @@
-x#Stash template inheritance
+##Stash template inheritance
 
 This solution implements a version of the 'template inheritance' pattern using [Stash](https://github.com/croxton/Stash), with full page static caching.
 
