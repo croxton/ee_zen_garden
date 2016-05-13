@@ -90,10 +90,6 @@ $config['resource_router'] = array(
 	/* one-off pages (channel_id = 2), but DON'T match segment_1 pagination 
 	
 		^			Start of line (automatically added by Resource Router)
-		(?! 		Start of negative lookahead - assert that we should NOT match the following characters
-		P 			Match the character 'P'
-		\d+ 		Match one or mnore digits (+ makes \d "greedy")
-		)			End of negative lookahead
 		:url_title 	Match the URL Title of an entry, save as a capture group ($wildcard)
 		$ 			End of line (automatically added by Resource Router)
 	*/
