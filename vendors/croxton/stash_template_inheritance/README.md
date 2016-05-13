@@ -1,4 +1,4 @@
-#Stash template inheritance
+x#Stash template inheritance
 
 This solution implements a version of the 'template inheritance' pattern using [Stash](https://github.com/croxton/Stash), with full page static caching.
 
@@ -8,23 +8,63 @@ We're using [Resource Router](https://github.com/rsanchez/resource_router) to de
 
 #### Homepage 
 `/`, `/P10`, `/P20` etc    
-A paginated list of blog posts
+*A paginated list of blog posts*        
+Maps to template: blog/index
 
 #### Blog category list 
-`/blog/category/[category]`, `/blog/category/[category]/P10`, etc   
-A paginated list of posts assigned to given category
+`/blog/category/[category]`, `/blog/category/[category]/P10`, etc      
+*A paginated list of posts assigned to given category*        
+Maps to template: blog/_category
 
 #### Single blog post
 `/blog/[url_title]`  
-A single blog post entry
+*A single blog post entry*    
+Maps to template: blog/_post
 
-#### 'Static' pages and contact form
+#### 'Static' pages
 `/[url_title]`    
-A single page entry
+*A single page entry*    
+Maps to template: site/_page
+
+* `/about`    
+	An about page    
+
+#### Headlines
+`/headlines`    
+*A newspaper-style alternative homepage*        
+Maps to template: headlines/index
+
+#### Archive
+`/archive`    
+*An archive of posts organised by category*    
+Maps to template: archive/index
+
+#### Contact us
+`/contact`    
+*A contact form*    
+Maps to template: contact/index
+
+#### Profile
+`/profile/[member_id]`    
+*An author profile*        
+Maps to template: profile/index
+
+#### Profile vCard
+`/profile/vcard/[member_id]`    
+*Download a member's contact information as a vCard*    
+Maps to template: profile/vcard
 
 #### API - JSON endpoint
 `/api/related/[entry_id]`    
-Returns category-related entries for a given entry_id in JSON format
+*Returns category-related entries for a given entry_id in JSON format*
+
+`/api/posts/by/[member_id]`    
+*Returns entries for a given member in JSON format*
+
+#### 404
+`/page-not-found`    
+*404 page*    
+Maps to template: site/404
 
 ## Template organisation
 
@@ -37,6 +77,11 @@ Template inheritance allows you to build a base "skeleton" template that contain
 	   └─ index.html
 	└─ contact.group
 	   └─ index.html
+	└─ headlines.group
+	   └─ index.html	 
+	└─ profile.group
+	   └─ index.html	
+	   └─ vcard.html	   	     
 	└─ site.group
 	   └─ 404.html  
 	   └─ _page.html 	
@@ -44,12 +89,16 @@ Template inheritance allows you to build a base "skeleton" template that contain
 	└─ layouts
 	   └─ base.html
 	└─ models
+	   └─ author_model.html
 	   └─ post_model.html
 	└─ partials
+	   └─ archive_list.html
 	   └─ contact_form.html
+	   └─ headlines_list.html
 	   └─ post.html
 	   └─ post_header.html
 	   └─ post_list.html
+	   └─ profile.html
 	   
 	   
 The ExpressionEngine templates under `default_site` provide routes into the website and act a little like *controllers*. Their job is to grab data (either directly from tags or from a model), assemble a layout (from the wrapper and partials) and inject the data into it.
@@ -81,21 +130,23 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 ## Configuration
 
 ### Initial set up
-* Copy `/vendors/croxton/stash_template_inheritance/_htacess` to the ee_zen_garden root directory and rename as `.htaccess`
-* Create (or change) the symlink to the templates folder, e.g.:
+1. Copy `/vendors/croxton/stash_template_inheritance/_htacess` to the ee_zen_garden root directory and rename as `.htaccess`
+2. Create (or change) the symlink to the templates folder, e.g.:
 	
-	ln -s ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
+		ln -s ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
+
 
 	If you already have a symlink and need to change it:
-	ln -nfs ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
 
-If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
+		ln -nfs ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
+
+	If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
 		
-* In the file `/system/user/config/config.php', scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
-* In the CP go to `System Settings > Template settings` and set the following:
+3. In the file `/system/user/config/config.php', scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
+4. In the CP go to `System Settings > Template settings` and set the following:
 	* Enable Strict URLs: 'Yes'
 	* 404 Page: site/404
-* In the CP go to `Template Manager`, click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
+5. In the CP go to `Template Manager`, click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
 
 
 ### Third party add-ons
@@ -123,16 +174,17 @@ If you can't create a symlink, simply move the templates from `/vendors/croxton/
 * **Body** (post_body) - Textarea (Rich Text)
 * **Image** (post_img) - File, set to 'Images' file upload location
 
+
 ### Channels
 
 * **Blog** - assigned to the 'Posts' fieldgroup and 'Blog' category group
 * **Pages** - assigned to the 'Posts' fieldgroup 
 
+
 ### Category groups
 
 Create categories as follows, adding a description and assigning an image to each:
 
-##### 
 * Animals
 * Beards
 * Beer
@@ -154,6 +206,7 @@ Create categories as follows, adding a description and assigning an image to eac
 Create the following entries, populating the fields with the appropriate text and image as per the original source pages:
 
 * About (about)
+* Archive (archive)
 * Contact Me (contact)
 * EE Zen Garden (home)
 * Page Not Found (page-not-found)
@@ -163,18 +216,19 @@ Publish a few random entries - anything you like - and assign to one or more cat
 
 ### Mustash (optional)
 
-* On the `Settings` screen, enable the `Channel Entries`,  `Categories` and `API` plugins.
-* On the same screen, enter an API key (up to 32 character random string) and make a note of the Cache pruning URL displayed there.
-* On the `Rules` screen add these cache-breaking rules:
+1. On the `Settings` screen, enable the `API`, `Categories`, `Channel Entries` and `Member Model` plugins.
+2. On the same screen, enter an API key (up to 32 character random string) and make a note of the Cache pruning URL displayed there.
+3. On the `Rules` screen add these cache-breaking rules:
 
-Hook | Group | Bundle | Scope | Pattern | Comment
----- | ----- | ------ | ----- | ------- | ------
-Channel Entries: all hooks | Blog | Static | Site | #^blog/{url_title}:static$# | Single blog post entry
-Channel Entries: all hooks | Pages | Static | Site | #^{url_title}:static$# | Single page entry
-Channel Entries: all hooks | Pages | Static | Site | #^\\\[index\\\]:{url_title}:static$# | Homepage
-Categories: all hooks | Blog | Static | Site | #^blog/category/{cat_url_title}:static$# | Blog category listing
+	Hook | Group | Bundle | Scope | Pattern | Comment
+	---- | ----- | ------ | ----- | ------- | ------
+	Channel Entries: all hooks | Blog | Static | Site | #^blog/{url_title}:static$# | Single blog post entry
+	Channel Entries: all hooks | Pages | Static | Site | #^{url_title}:static$# | Single page entry
+	Channel Entries: all hooks | Pages | Static | Site | #^\\\[index\\\]:{url_title}:static$# | Homepage
+	Categories: all hooks | Blog | Static | Site | #^blog/category/{cat_url_title}:static$# | Blog category listing
+	Member Model: all hooks | -- | Static | Site | #^profile/{member_id}:static$# | Member profile page
 
-* Add a CRON to prune the cache periodically by pinging the pruning URL you noted earlier. E.g.:
+4. Add a CRON to prune the cache periodically by pinging the pruning URL you noted earlier. E.g.:
  
 		*/15 * * * * wget -qO- 'http://ee_zen_garden.dev/?ACT=123&key=456&prune=1' >/dev/null 2>&1
 
