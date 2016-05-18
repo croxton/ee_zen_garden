@@ -1,8 +1,8 @@
 <?php
 
 /* Debug */
-$config['template_debugging'] = 'y';
-$config['show_profiler'] = 'y';
+$config['template_debugging'] = 'n';
+$config['show_profiler'] = 'n';
 
 /* remove index.php */
 $config['index_page'] = '';
@@ -94,14 +94,10 @@ $config['resource_router'] = array(
 		^						Start of line (automatically added by Resource Router)
 		blog/category/			Match these characters literally
 		:category_url_title		Match a Category URL Title and save as a capture group ($wildcard)
-		( 						Start of another capturing group ($page)
-		/P 						Match these characters literally
-		\d+ 					Match one or more digits (+ makes \d "greedy")
-		)						End of capture group
-		?						Quantifier meaning 'zero or more' of preceding capture group - i.e. make the capture group optional
+		:pagination				Match pagination ($page)
 		$ 						End of line (automatically added by Resource Router)
 	*/
-	'blog/category/:category_url_title(/P\d+)?' => function($router, $wildcard, $page="") {
+	'blog/category/:category_url_title/:pagination' => function($router, $wildcard, $page="") {
 
 		// valid blog category (in group 1)?
 		if ($wildcard->isValidCategoryUrlTitle(array('group_id' => 1))) {
@@ -141,15 +137,13 @@ $config['resource_router'] = array(
 
 		^				Start of line (automatically added by Resource Router)
 		api/related/	Match these characters literally
-		( 				Start a capturing group ($entry_id)
-		\d+ 			Match one or more digits (+ makes \d "greedy")
-		) 				End of capturing group
+		:entry_id		Match an entry ID, save as a capture group ($wildcard)
 		$ 				End of line (automatically added by Resource Router)
 	*/
-	'api/related/(\d+)' => function($router, $entry_id) {
+	'api/related/:entry_id' => function($router, $wildcard) {
 
 		$now = ee()->localize->now;
-		$entry_id = ee()->db->escape($entry_id);
+		$entry_id = ee()->db->escape($wildcard);
 		$channel_id = 1; // blog
 		$site_id = 1;
 		$limit = 6;
