@@ -185,7 +185,7 @@ $config['resource_router'] = array(
 	'api/related/:entry_id' => function($router, $wildcard) {
 
 		$now = ee()->localize->now;
-		$wildcard = ee()->db->escape($entry_id);
+		$entry_id = ee()->db->escape($wildcard);
 		$channel_id = 1; // blog
 		$site_id = 1;
 		$limit = 6;
