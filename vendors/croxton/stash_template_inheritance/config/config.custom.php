@@ -57,7 +57,7 @@ $config['resource_router'] = array(
 		$router->stopRouting();
 	},
 
-	/* homepage, optionally with pagination in segment_1 (e.g. /P1) 
+	/* headlines - alternative homepage
 
 		^			Start of line (automatically added by Resource Router)	
 		( 			Start of capturing group ($wildcard)
@@ -303,13 +303,13 @@ $config['resource_router'] = array(
 		}
 	},
 
-	/* Generate a 404 for any other non-empty url, except segment_1 pagination 
+	/* Generate a 404 for any other non-empty url
 
-		^				Start of line (automatically added by Resource Router)
-		( 				Start a capturing group ($wildcard)
-		.+				Match one or more characters
-		)				End of capturing group
-		$ 				End of line (automatically added by Resource Router)
+		^	Start of line (automatically added by Resource Router)
+		( 	Start a capturing group ($wildcard)
+		.+	Match one or more characters
+		)	End of capturing group
+		$ 	End of line (automatically added by Resource Router)
 	*/
 	'(.+)' => function($router, $wildcard) {
 
