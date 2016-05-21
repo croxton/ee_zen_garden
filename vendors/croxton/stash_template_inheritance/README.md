@@ -168,12 +168,20 @@ Create a category group 'Blog' (ID 1) and add categories as follows, adding a de
 Create the following entries (url_title in brackets), populating the fields with the appropriate text and image as per the original source pages:
 
 * About (about)
+* Archive (archive)
 * Contact Me (contact)
 * EE Zen Garden (home)
 * Page Not Found (page-not-found)
 
 ##### Blog
 Publish a few random entries - anything you like - and assign to one or more categories.
+
+### Member data
+* Go to `Admin > Settings > Avatars` and set max width to 1200, max height to 800 and max file size to 1024.
+* Go to Members > Member fields and create
+	* **Strapline** (mb_strap) - Text input
+	* **Telephone** (mb_telephone) - Text input
+* Now go to your `Account > My profile` page and fill in the fields.
 
 ### Mustash (optional)
 
