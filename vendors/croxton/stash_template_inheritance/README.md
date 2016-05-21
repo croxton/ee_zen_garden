@@ -84,9 +84,10 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 * Copy `/vendors/croxton/stash_template_inheritance/_htaccess` to the ee_zen_garden root directory and rename as `.htaccess`
 * Edit `/system/user/config/config.php` and add this line:
 
-	/* Custom rules */
-	require $_SERVER['DOCUMENT_ROOT'] . '/vendors/croxton/stash_template_inheritance/config/config.custom.php'; 
-	
+		/* Custom rules */
+		require $_SERVER['DOCUMENT_ROOT'] . '/vendors/croxton/stash_template_inheritance/config/config.custom.php'; 
+		
+* In the same file, scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
 * Delete the existing templates folders `/system/user/templates`
 * Create (or change) the symlink to the templates folder, e.g.:
 	
@@ -98,7 +99,6 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 
 If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
 		
-* In the file `/system/user/config/config.php', scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
 * In the CP go to `System Settings > Template settings` and set the following:
 	* Enable Strict URLs: 'Yes'
 	* 404 Page: site/404
