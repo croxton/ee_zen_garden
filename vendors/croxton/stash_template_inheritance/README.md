@@ -108,7 +108,7 @@ If you can't create a symlink, simply move the templates from `/vendors/croxton/
 	* 404 Page: site/404
 
 
-### Install party add-ons
+### Install add-ons
 
 ##### First-party
 
