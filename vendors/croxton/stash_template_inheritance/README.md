@@ -108,14 +108,18 @@ If you can't create a symlink, simply move the templates from `/vendors/croxton/
 	* 404 Page: site/404
 
 
-### Install third party add-ons
+### Install party add-ons
 
-##### Essential
+##### First-party
+
+* Email
+
+##### Third-party: essential
 
 * [Stash](https://github.com/croxton/Stash)
 * [Resource Router](https://github.com/rsanchez/resource_router)
 
-##### Optional
+##### Third-party: optional
 
 * [Mustash](https://github.com/croxton/Stash/wiki/Mustash)
 
