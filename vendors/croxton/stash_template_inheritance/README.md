@@ -81,7 +81,7 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 ## Configuration
 
 ### Initial set up
-* Copy `/vendors/croxton/stash_template_inheritance/_htacess` to the ee_zen_garden root directory and rename as `.htaccess`
+* Copy `/vendors/croxton/stash_template_inheritance/_htaccess` to the ee_zen_garden root directory and rename as `.htaccess`
 * Delete the existing templates folders `/system/user/templates`
 * Create (or change) the symlink to the templates folder, e.g.:
 	
