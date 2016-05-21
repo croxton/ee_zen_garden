@@ -98,14 +98,17 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 		ln -nfs ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates 	~/Sites/ee_zen_garden/system/user/templates
 
 If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
+
+* In the CP go to `Template Manager`, and check that the templates appear. If not, create a new template group `Blog` and save, this should force EE to sync the template files.
+
+* Click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
 		
-* In the CP go to `System Settings > Template settings` and set the following:
+* Go to `System Settings > Template settings` and set the following:
 	* Enable Strict URLs: 'Yes'
 	* 404 Page: site/404
-* In the CP go to `Template Manager`, click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
 
 
-### Third party add-ons
+### Install third party add-ons
 
 ##### Essential
 
@@ -116,26 +119,26 @@ If you can't create a symlink, simply move the templates from `/vendors/croxton/
 
 * [Mustash](https://github.com/croxton/Stash/wiki/Mustash)
 
-### File upload locations
+### Create file upload locations
 
 * **Images**
 	* Server path: /images/uploads/    
  	* URL of upload Directory: /path/to/ee_zen_garden/images/uploads/
 
 
-### Field groups
+### Create field groups
 
 ##### Post
 * **Subtitle** (post_subtitle) - Text input
 * **Body** (post_body) - Textarea (Rich Text)
 * **Image** (post_img) - File, set to 'Images' file upload location
 
-### Channels
+### Add channels
 
 * **Blog** - assigned to the 'Posts' fieldgroup and 'Blog' category group
 * **Pages** - assigned to the 'Posts' fieldgroup 
 
-### Category groups
+### Add a category group
 
 Create a category group 'Blog' and add categories as follows, adding a description and assigning an image to each:
 
