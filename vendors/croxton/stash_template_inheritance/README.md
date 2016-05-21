@@ -133,14 +133,9 @@ If you can't create a symlink, simply move the templates from `/vendors/croxton/
 * **Body** (post_body) - Textarea (Rich Text)
 * **Image** (post_img) - File, set to 'Images' file upload location
 
-### Add channels
-
-* **Blog** - assigned to the 'Posts' fieldgroup and 'Blog' category group
-* **Pages** - assigned to the 'Posts' fieldgroup 
-
 ### Add a category group
 
-Create a category group 'Blog' and add categories as follows, adding a description and assigning an image to each:
+Create a category group 'Blog' (ID 1) and add categories as follows, adding a description and assigning an image to each:
 
 ##### 
 * Animals
@@ -156,12 +151,17 @@ Create a category group 'Blog' and add categories as follows, adding a descripti
 * Space monkeys
 * Tentacles
 
+### Add channels
+
+* **Blog** (channel ID 1) - assigned to the 'Posts' fieldgroup and 'Blog' category group
+* **Pages** (channel ID 2) - assigned to the 'Posts' fieldgroup 
+
 
 ### Entries
 
 ##### Pages
 
-Create the following entries, populating the fields with the appropriate text and image as per the original source pages:
+Create the following entries (url_title in brackets), populating the fields with the appropriate text and image as per the original source pages:
 
 * About (about)
 * Contact Me (contact)
