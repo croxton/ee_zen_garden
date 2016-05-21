@@ -42,14 +42,15 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 
 7. 	Edit `/system/user/config/config.php` and add this rule:
 
-		$conf['save_tmpl_files'] = "y";
+		$config['save_tmpl_files'] = "y";
 
 8. Optional: create a symlink to the templates folder in your vendor directory from EE's default template location, e.g:
 	
-	ln -s ~/Sites/ee_zen_garden/vendors/[your vendor name]/[your solution name]/templates ~/Sites/ee_zen_garden/system/user/templates
+		ln -s ~/Sites/ee_zen_garden/vendors/[your vendor name]/[your solution name]/templates ~/Sites/ee_zen_garden/system/user/templates
 
 	If you need to change the symlink:
-	ln -nfs ~/path/to/the/new/location ~/Sites/ee_zen_garden/system/user/templates
+	
+		ln -nfs ~/path/to/the/new/location ~/Sites/ee_zen_garden/system/user/templates
 
 	If you don't want to do this, you'll need to put your templates directly in the `/system/user/templates` folder and copy them to your vendor template folder when you make changes.
 		
