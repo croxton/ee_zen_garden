@@ -82,6 +82,11 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 
 ### Initial set up
 * Copy `/vendors/croxton/stash_template_inheritance/_htaccess` to the ee_zen_garden root directory and rename as `.htaccess`
+* Edit `/system/user/config/config.php` and add this line:
+
+	/* Custom rules */
+	require $_SERVER['DOCUMENT_ROOT'] . '/vendors/croxton/stash_template_inheritance/config/config.custom.php'; 
+	
 * Delete the existing templates folders `/system/user/templates`
 * Create (or change) the symlink to the templates folder, e.g.:
 	
@@ -132,7 +137,7 @@ If you can't create a symlink, simply move the templates from `/vendors/croxton/
 
 ### Category groups
 
-Create categories as follows, adding a description and assigning an image to each:
+Create a category group 'Blog' and add categories as follows, adding a description and assigning an image to each:
 
 ##### 
 * Animals
