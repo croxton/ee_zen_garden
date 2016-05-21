@@ -44,7 +44,7 @@ Check it out here: [http://croxton.github.io/ee_zen_garden](http://croxton.githu
 
 		$config['save_tmpl_files'] = "y";
 
-8. Optional: create a symlink to the templates folder in your vendor directory from EE's default template location, e.g:
+8. Optional: delete the existing templates folder at EE's default template location `/system/user/templates` and create a symlink to the templates folder in your vendor directory, e.g:
 	
 		ln -s ~/Sites/ee_zen_garden/vendors/[your vendor name]/[your solution name]/templates ~/Sites/ee_zen_garden/system/user/templates
 
