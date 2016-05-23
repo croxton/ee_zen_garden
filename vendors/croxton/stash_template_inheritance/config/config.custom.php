@@ -277,10 +277,10 @@ $config['resource_router'] = array(
 
 		^				Start of line (automatically added by Resource Router)
 		profile/		Match these characters literally
-		:member_id 		Match a Member ID and save as a capture group ($wildcard)
+		:member_id 		Match a Member ID and save as a capture group ($wildcard_1)
 		$ 				End of line (automatically added by Resource Router)
 	*/
-	'profile/:member_id' => function($router, $wildcard="") {
+	'profile/:member_id' => function($router, $wildcard) {
 
 		// valid member?
 		if ($wildcard->isValidMemberId()) {
@@ -288,14 +288,15 @@ $config['resource_router'] = array(
 		}
 	},
 
-	/* Member vCard
+	/* Member profile - vCard
 
 		^				Start of line (automatically added by Resource Router)
-		profile/vcard/	Match these characters literally
+		profile/		Match these characters literally
 		:member_id 		Match a Member ID and save as a capture group ($wildcard)
+		vcard			Match a third segment that is literally "vcard"
 		$ 				End of line (automatically added by Resource Router)
 	*/
-	'profile/vcard/:member_id' => function($router, $wildcard="") {
+	'profile/:member_id/vcard' => function($router, $wildcard) {
 
 		// valid member?
 		if ($wildcard->isValidMemberId()) {
