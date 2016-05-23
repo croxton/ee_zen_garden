@@ -300,7 +300,7 @@ $config['resource_router'] = array(
 
 		// valid member?
 		if ($wildcard->isValidMemberId()) {
-			$router->setTemplate('profile/vcard');
+			$router->setTemplate('profile/_vcard');
 		}
 	},
 
