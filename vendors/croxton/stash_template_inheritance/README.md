@@ -179,8 +179,8 @@ Publish a few random entries - anything you like - and assign to one or more cat
 ### Member data
 * Go to `Admin > Settings > Avatars` and set max width to 1200, max height to 800 and max file size to 1024.
 * Go to Members > Member fields and create
-	* **Strapline** (mb_strap) - Text input
-	* **Telephone** (mb_telephone) - Text input
+	* **Strapline** (mf_strap) - Text input
+	* **Telephone** (mf_telephone) - Text input
 * Now go to your `Account > My profile` page and fill in the fields.
 
 ### Mustash (optional)
