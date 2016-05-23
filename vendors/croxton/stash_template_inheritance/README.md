@@ -130,61 +130,68 @@ Single blog posts load related entries via AJAX from the JSON endpoint defined i
 ## Configuration
 
 ### Initial set up
-1. Copy `/vendors/croxton/stash_template_inheritance/_htacess` to the ee_zen_garden root directory and rename as `.htaccess`
-2. Create (or change) the symlink to the templates folder, e.g.:
+
+* Copy `/vendors/croxton/stash_template_inheritance/_htaccess` to the ee_zen_garden root directory and rename as `.htaccess`
+* Edit `/system/user/config/config.php` and add this line:
+
+		/* Custom rules */
+		require $_SERVER['DOCUMENT_ROOT'] . '/vendors/croxton/stash_template_inheritance/config/config.custom.php'; 
+		
+* In the same file, scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
+* Delete the existing templates folders `/system/user/templates`
+* Create (or change) the symlink to the templates folder, e.g.:
 	
 		ln -s ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
 
-
 	If you already have a symlink and need to change it:
-
+	
 		ln -nfs ~/Sites/ee_zen_garden/vendors/croxton/stash_template_inheritance/templates ~/Sites/ee_zen_garden/system/user/templates
 
-	If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
+If you can't create a symlink, simply move the templates from `/vendors/croxton/stash_template_inheritance/templates` to `/system/user/templates`.
+
+* In the CP go to `Template Manager`, and check that the templates appear. If not, create a new template group `Blog` and save, this should force EE to sync the template files.
+
+* Click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
 		
-3. In the file `/system/user/config/config.php', scroll down to `$config['encryption_key'] = "";` and enter a unique value for the key.
-4. In the CP go to `System Settings > Template settings` and set the following:
+* Go to `System Settings > Template settings` and set the following:
 	* Enable Strict URLs: 'Yes'
 	* 404 Page: site/404
-5. In the CP go to `Template Manager`, click on the `Blog` template group, click the edit button, then check 'Yes' for `Make default group?`.
 
 
-### Third party add-ons
+### Install add-ons
 
-##### Essential
+##### First-party
+
+* Email
+
+##### Third-party: essential
 
 * [Stash](https://github.com/croxton/Stash)
 * [Resource Router](https://github.com/rsanchez/resource_router)
 
-##### Optional
+##### Third-party: optional
 
 * [Mustash](https://github.com/croxton/Stash/wiki/Mustash)
 
-### File upload locations
+### Create file upload locations
 
 * **Images**
 	* Server path: /images/uploads/    
  	* URL of upload Directory: /path/to/ee_zen_garden/images/uploads/
 
 
-### Field groups
+### Create field groups
 
 ##### Post
 * **Subtitle** (post_subtitle) - Text input
 * **Body** (post_body) - Textarea (Rich Text)
 * **Image** (post_img) - File, set to 'Images' file upload location
 
+### Add a category group
 
-### Channels
+Create a category group 'Blog' (ID 1) and add categories as follows, adding a description and assigning an image to each:
 
-* **Blog** - assigned to the 'Posts' fieldgroup and 'Blog' category group
-* **Pages** - assigned to the 'Posts' fieldgroup 
-
-
-### Category groups
-
-Create categories as follows, adding a description and assigning an image to each:
-
+##### 
 * Animals
 * Beards
 * Beer
@@ -198,12 +205,17 @@ Create categories as follows, adding a description and assigning an image to eac
 * Space monkeys
 * Tentacles
 
+### Add channels
+
+* **Blog** (channel ID 1) - assigned to the 'Posts' fieldgroup and 'Blog' category group
+* **Pages** (channel ID 2) - assigned to the 'Posts' fieldgroup 
+
 
 ### Entries
 
 ##### Pages
 
-Create the following entries, populating the fields with the appropriate text and image as per the original source pages:
+Create the following entries (url_title in brackets), populating the fields with the appropriate text and image as per the original source pages:
 
 * About (about)
 * Archive (archive)
@@ -213,6 +225,13 @@ Create the following entries, populating the fields with the appropriate text an
 
 ##### Blog
 Publish a few random entries - anything you like - and assign to one or more categories.
+
+### Member data
+* Go to `Admin > Settings > Avatars` and set max width to 1200, max height to 800 and max file size to 1024.
+* Go to Members > Member fields and create
+	* **Strapline** (mf_strap) - Text input
+	* **Telephone** (mf_telephone) - Text input
+* Now go to your `Account > My profile` page and fill in the fields.
 
 ### Mustash (optional)
 
