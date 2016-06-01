@@ -51,6 +51,7 @@ $config['resource_router'] = array(
 		$router->setWildcard(1, 'home');
 		if ($wildcard->isValidUrlTitle(array('channel_id' => 2))) {
 			$router->setGlobal('pg_entry_id', $wildcard->getMeta('entry_id'));
+			$router->setTemplate('site/_page');
 		}
 
 		// stop any other rules being processed, if this rule was matched
